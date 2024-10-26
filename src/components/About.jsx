@@ -1,20 +1,25 @@
 import React from "react";
+import { Box, Typography } from "@mui/material";
 
 const About = () => {
   return (
-    <section
+    <Box
       id="about"
-      style={{
+      sx={{
         height: "100vh",
-        background: "lightgreen",
+        backgroundColor: "lightgreen",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <h2>About Me</h2>
-      <p>This is the about section where you can introduce yourself.</p>
-    </section>
+      <Box textAlign="center">
+        <Typography variant="h2">About Me</Typography>
+        <Typography variant="body1">
+          This is the about section where you can introduce yourself.
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 

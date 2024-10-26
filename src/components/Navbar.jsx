@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-scroll";
+import {
+  AppBar,
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,7 +17,6 @@ const Navbar = () => {
 
   const toggleNavbar = () => {
     if (!isOpen) {
-      // If opening, reset and set timeout for each menu item
       setMenuItems([]);
       setIsOpen(true);
       const itemTimeouts = [0, 300, 600, 900]; // Delay for each menu item
@@ -17,76 +26,50 @@ const Navbar = () => {
         }, timeout);
       });
     } else {
-      // If closing, clear menu items
       setIsOpen(false);
       setMenuItems([]);
     }
   };
 
-  const navbarStyles = {
-    position: "fixed",
-    top: 0,
-    right: 0,
-    height: "100%",
-    width: "250px",
-    backgroundColor: "white",
-    boxShadow: "-2px 0 5px rgba(0, 0, 0, 0.2)",
-    // transform: isOpen ? "translateX(0)" : "translateX(100%)",
-    // transition: "transform 0.3s ease-in-out",
-    zIndex: 1000,
-  };
-
-  const hamburgerStyles = {
-    position: "absolute",
-    top: "20px",
-    right: "20px",
-    background: "none",
-    border: "none",
-    fontSize: "24px",
-    cursor: "pointer",
-    zIndex: 1001,
-  };
-
-  const navLinksStyles = {
-    display: "flex",
-    flexDirection: "column",
-    marginTop: "50px",
-  };
-
-  const linkStyles = {
-    margin: "20px 0",
-    opacity: 0,
-    transition: "opacity 0.3s ease-in-out",
-  };
-
   return (
-    <div style={navbarStyles}>
-      <button style={hamburgerStyles} onClick={toggleNavbar}>
-        &#9776; {/* Hamburger icon */}
-      </button>
-      <nav style={navLinksStyles}>
-        <ul style={{ listStyleType: "none", padding: 0 }}>
+    <>
+      <AppBar position="fixed" sx={{ zIndex: 1000 }}>
+        <IconButton
+          edge="end"
+          color="inherit"
+          onClick={toggleNavbar}
+          sx={{ position: "absolute", top: 20, right: 20 }}
+        >
+          <MenuIcon />
+        </IconButton>
+      </AppBar>
+      <Drawer anchor="right" open={isOpen} onClose={toggleNavbar}>
+        <List sx={{ width: 250 }}>
           {["hero", "about", "projects", "contact"].map((item, index) => (
-            <li
+            <ListItem
+              button
               key={item}
-              style={{
-                ...linkStyles,
+              onClick={toggleNavbar}
+              sx={{
                 opacity: menuItems.includes(index) ? 1 : 0,
+                transition: "opacity 0.3s ease-in-out",
               }}
             >
               <Link
                 to={item}
                 smooth={true}
                 duration={500}
-                onClick={toggleNavbar}
+                style={{ textDecoration: "none", width: "100%" }}
               >
-                {item.charAt(0).toUpperCase() + item.slice(1)}
+                <ListItemText
+                  primary={item.charAt(0).toUpperCase() + item.slice(1)}
+                />
               </Link>
-            </li>
+            </ListItem>
           ))}
-        </ul>
-      </nav>
-    </div>
+        </List>
+      </Drawer>
+    </>
   );
 };
 
