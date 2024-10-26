@@ -1,20 +1,23 @@
 import React from "react";
+import { Box, Typography } from "@mui/material";
 
 const Projects = () => {
   return (
-    <section
+    <Box
       id="projects"
-      style={{
+      sx={{
         height: "100vh",
-        background: "lightcoral",
+        backgroundColor: "lightcoral",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <h2>My Projects</h2>
-      <p>Details about your projects go here.</p>
-    </section>
+      <Typography variant="h2">My Projects</Typography>
+      <Typography variant="body1">
+        Details about your projects go here.
+      </Typography>
+    </Box>
   );
 };
 
