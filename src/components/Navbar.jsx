@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-scroll";
+import React, { useState, useEffect, useContext } from "react";
 import {
   AppBar,
-  Button,
+  Toolbar,
+  IconButton,
+  Typography,
   Drawer,
   List,
   ListItem,
   ListItemText,
-  IconButton,
   FormControl,
   FormControlLabel,
   Radio,
@@ -15,16 +15,35 @@ import {
   Collapse,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-scroll";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
+  const [showNavbar, setShowNavbar] = useState(false);
   const { mode, subMode, toggleMode, toggleSubMode } = useContext(ThemeContext);
+
+  // Toggle the visibility of the Navbar based on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShowNavbar(true);
+      } else {
+        setShowNavbar(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const toggleNavbar = () => {
+    setIsOpen(!isOpen);
     if (!isOpen) {
       setMenuItems([]);
-      setIsOpen(true);
       const itemTimeouts = [0, 300, 600, 900]; // Delay for each menu item
       itemTimeouts.forEach((timeout, index) => {
         setTimeout(() => {
@@ -32,23 +51,34 @@ const Navbar = () => {
         }, timeout);
       });
     } else {
-      setIsOpen(false);
       setMenuItems([]);
     }
   };
 
   return (
     <>
-      <AppBar position="fixed" sx={{ zIndex: 1000 }}>
+      {showNavbar && (
+        <AppBar position="fixed" sx={{ zIndex: 1000 }}>
+          <Toolbar>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              Your Website Name
+            </Typography>
+            <IconButton edge="end" color="inherit" onClick={toggleNavbar}>
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      )}
+      {/* Always show the MenuIcon */}
+      {!showNavbar && (
         <IconButton
-          edge="end"
           color="inherit"
           onClick={toggleNavbar}
-          sx={{ position: "absolute", top: 20, right: 20 }}
+          sx={{ position: "fixed", top: 20, right: 20, zIndex: 1100 }}
         >
           <MenuIcon />
         </IconButton>
-      </AppBar>
+      )}
       <Drawer anchor="right" open={isOpen} onClose={toggleNavbar}>
         <List sx={{ width: 250 }}>
           {["hero", "about", "projects", "contact"].map((item, index) => (
@@ -74,8 +104,8 @@ const Navbar = () => {
             </ListItem>
           ))}
         </List>
+        {/* Theme Mode Radio Buttons */}
         <List sx={{ width: 250 }}>
-          {/* Theme Mode Radio Buttons */}
           <ListItem>
             <FormControl component="fieldset">
               <RadioGroup
@@ -109,7 +139,6 @@ const Navbar = () => {
                     />
                   </RadioGroup>
                 </Collapse>
-
                 <FormControlLabel
                   value="dark"
                   control={<Radio />}
