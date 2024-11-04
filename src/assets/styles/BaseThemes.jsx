@@ -3,13 +3,13 @@ import { createTheme } from "@mui/material/styles";
 
 // Define common typography for classic and future 3D
 const classicTypography = {
-  fontFamily: "Georgia, serif",
+  fontFamily: "'Merriweather', 'Playfair Display', serif",
   h2: { fontSize: "2.2rem", fontWeight: 500 },
   body1: { fontSize: "1rem", lineHeight: 1.6 },
 };
 
 const future3DTypography = {
-  fontFamily: "'Roboto', sans-serif",
+  fontFamily: "'Space Grotesk', 'Orbitron', sans-serif",
   h2: { fontSize: "2.5rem", fontWeight: 700, textShadow: "2px 2px #000" },
   body1: { fontSize: "1.1rem", lineHeight: 1.8 },
 };
@@ -18,8 +18,8 @@ const future3DTypography = {
 export const lightTheme = createTheme({
   palette: {
     mode: "light",
-    primary: { main: "#1976d2" },
-    background: { default: "#ffffff", paper: "#f4f4f4" },
+    primary: { main: "#c0c0c0" }, // Silver for a subtle, classic look
+    background: { default: "#ffffff", paper: "#f5f5f5" },
   },
   typography: classicTypography,
 });
@@ -28,10 +28,13 @@ export const lightClassic = createTheme({
   ...lightTheme,
   palette: {
     ...lightTheme.palette,
-    primary: { main: "#6b8e23" }, // Olive green classic tone
-    secondary: { main: "#d2b48c" }, // Tan accent color
-    background: { default: "#fffaf0", paper: "#f5f5dc" }, // Ivory background
-    text: { primary: "#333", secondary: "#555" },
+    primary: { main: "#F6F2E3" }, // SaddleBrown for vintage warmth
+    secondary: { main: "#D2B48C" }, // Tan accent color
+    background: {
+      default: "#F6F2E3", // Beige for a classic vintage background
+      paper: "#FFF8E1", // Light cream background for paper
+    },
+    text: { primary: "#333333", secondary: "#555555" },
   },
   typography: classicTypography,
 });
@@ -40,10 +43,10 @@ export const lightFuture3D = createTheme({
   ...lightTheme,
   palette: {
     ...lightTheme.palette,
-    primary: { main: "#0d47a1" }, // Deep blue for modern look
-    secondary: { main: "#ff6f00" }, // Vivid orange accent
-    background: { default: "#e3f2fd", paper: "#f3e5f5" }, // Light blue & purple
-    text: { primary: "#000", secondary: "#3e3e3e" },
+    primary: { main: "#6B8E23" }, // Olive green for a vintage modern look
+    secondary: { main: "#FFDE00" }, // Bright gold accent
+    background: { default: "#FFF3E0", paper: "#FFEBB4" }, // Soft pastel for light
+    text: { primary: "#000000", secondary: "#3E3E3E" },
   },
   typography: future3DTypography,
   components: {
@@ -62,8 +65,8 @@ export const lightFuture3D = createTheme({
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
-    primary: { main: "#90caf9" },
-    background: { default: "#121212", paper: "#1d1d1d" },
+    primary: { main: "#AFAFAF" }, // Light gray for classic contrast
+    background: { default: "#0F172A", paper: "#1E1E1E" },
   },
   typography: classicTypography,
 });
@@ -72,10 +75,10 @@ export const darkClassic = createTheme({
   ...darkTheme,
   palette: {
     ...darkTheme.palette,
-    primary: { main: "#8b4513" }, // SaddleBrown classic tone
-    secondary: { main: "#deb887" }, // BurlyWood accent color
-    background: { default: "#2e2e2e", paper: "#3e3e3e" },
-    text: { primary: "#e0e0e0", secondary: "#a9a9a9" },
+    primary: { main: "#3E2723" }, // Dark brown for a rich vintage feel
+    secondary: { main: "#D7CCC8" }, // Light beige accent
+    background: { default: "#0F172A", paper: "#3C3C3C" },
+    text: { primary: "#E0E0E0", secondary: "#BDBDBD" },
   },
   typography: classicTypography,
 });
@@ -84,10 +87,10 @@ export const darkFuture3D = createTheme({
   ...darkTheme,
   palette: {
     ...darkTheme.palette,
-    primary: { main: "#bb86fc" }, // Neon purple
-    secondary: { main: "#03dac6" }, // Aquamarine accent
+    primary: { main: "#BB86FC" }, // Vintage lavender
+    secondary: { main: "#03DAC6" }, // Soft teal accent
     background: { default: "#121212", paper: "#212121" },
-    text: { primary: "#ffffff", secondary: "#b0bec5" },
+    text: { primary: "#FFFFFF", secondary: "#B0BEC5" },
   },
   typography: future3DTypography,
   components: {
