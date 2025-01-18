@@ -4,7 +4,6 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Drawer,
   List,
   ListItem,
   ListItemText,
@@ -12,7 +11,6 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
-  Collapse,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-scroll";
@@ -22,7 +20,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const [showNavbar, setShowNavbar] = useState(false);
-  const { mode, subMode, toggleMode, toggleSubMode } = useContext(ThemeContext);
+  const { mode, toggleMode } = useContext(ThemeContext);
 
   // Toggle the visibility of the Navbar based on scroll
   useEffect(() => {
@@ -74,13 +72,27 @@ const Navbar = () => {
         <IconButton
           color="inherit"
           onClick={toggleNavbar}
-          sx={{ position: "fixed", top: 20, right: 20, zIndex: 1100 }}
+          sx={{ position: "fixed", top: 20, right: 20, zIndex: 2000 }}
         >
           <MenuIcon />
         </IconButton>
       )}
-      <Drawer anchor="right" open={isOpen} onClose={toggleNavbar}>
-        <List sx={{ width: 250 }}>
+
+      {/* Transparent Sidebar */}
+      <div
+        style={{
+          position: "fixed",
+          top: "10%",
+          right: 0,
+          width: isOpen ? "250px" : "0",
+          height: "90vh",
+          // backgroundColor: "rgba(0, 0, 0, 0.7)",
+          overflowX: "hidden",
+          transition: "width 0.3s ease",
+          zIndex: 1200,
+        }}
+      >
+        <List sx={{ padding: 0 }}>
           {["hero", "about", "projects", "contact"].map((item, index) => (
             <ListItem
               button
@@ -89,6 +101,7 @@ const Navbar = () => {
               sx={{
                 opacity: menuItems.includes(index) ? 1 : 0,
                 transition: "opacity 0.3s ease-in-out",
+                padding: "15px",
               }}
             >
               <Link
@@ -99,74 +112,38 @@ const Navbar = () => {
               >
                 <ListItemText
                   primary={item.charAt(0).toUpperCase() + item.slice(1)}
+                  sx={{ color: "#fff" }}
                 />
               </Link>
             </ListItem>
           ))}
         </List>
+
         {/* Theme Mode Radio Buttons */}
-        <List sx={{ width: 250 }}>
-          <ListItem>
+        <List sx={{ position: "absolute", bottom: 20, width: "100%" }}>
+          <ListItem sx={{ paddingLeft: "15px", paddingRight: "15px" }}>
             <FormControl component="fieldset">
               <RadioGroup
                 value={mode}
-                onChange={(event) => {
-                  const selectedMode = event.target.value;
-                  toggleMode(selectedMode);
-                  toggleSubMode("classic"); // Default to classic sub-mode
-                }}
+                onChange={(event) => toggleMode(event.target.value)}
               >
                 <FormControlLabel
                   value="light"
                   control={<Radio />}
                   label="Light Mode"
+                  sx={{ color: "#fff" }}
                 />
-                <Collapse in={mode === "light"}>
-                  <RadioGroup
-                    value={subMode}
-                    onChange={(event) => toggleSubMode(event.target.value)}
-                    sx={{ pl: 3 }}
-                  >
-                    <FormControlLabel
-                      value="classic"
-                      control={<Radio />}
-                      label="Classic"
-                    />
-                    <FormControlLabel
-                      value="future3D"
-                      control={<Radio />}
-                      label="Future 3D"
-                    />
-                  </RadioGroup>
-                </Collapse>
                 <FormControlLabel
                   value="dark"
                   control={<Radio />}
                   label="Dark Mode"
+                  sx={{ color: "#fff" }}
                 />
-                <Collapse in={mode === "dark"}>
-                  <RadioGroup
-                    value={subMode}
-                    onChange={(event) => toggleSubMode(event.target.value)}
-                    sx={{ pl: 3 }}
-                  >
-                    <FormControlLabel
-                      value="classic"
-                      control={<Radio />}
-                      label="Classic"
-                    />
-                    <FormControlLabel
-                      value="future3D"
-                      control={<Radio />}
-                      label="Future 3D"
-                    />
-                  </RadioGroup>
-                </Collapse>
               </RadioGroup>
             </FormControl>
           </ListItem>
         </List>
-      </Drawer>
+      </div>
     </>
   );
 };
