@@ -1,37 +1,23 @@
 import React, { createContext, useState, useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import {
-  lightClassic,
-  darkClassic,
-  lightFuture3D,
-  darkFuture3D,
-} from "../assets/styles/BaseThemes";
+import { lightTheme, darkTheme } from "../assets/styles/BaseThemes";
 
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = ({ children }) => {
-  const [mode, setMode] = useState("light");
-  const [subMode, setSubMode] = useState("classic");
+  const [mode, setMode] = useState("light"); // Manage light/dark mode
 
-  const toggleMode = (newMode) => {
-    setMode(newMode);
-    setSubMode("classic"); // Reset to classic whenever the mode is toggled
+  const toggleMode = () => {
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
 
-  const toggleSubMode = (newSubMode) => {
-    setSubMode(newSubMode);
-  };
-
+  // Memoize the current theme based on the mode
   const currentTheme = useMemo(() => {
-    if (mode === "light") {
-      return subMode === "classic" ? lightClassic : lightFuture3D;
-    } else {
-      return subMode === "classic" ? darkClassic : darkFuture3D;
-    }
-  }, [mode, subMode]);
+    return mode === "light" ? lightTheme : darkTheme;
+  }, [mode]);
 
   return (
-    <ThemeContext.Provider value={{ mode, subMode, toggleMode, toggleSubMode }}>
+    <ThemeContext.Provider value={{ mode, toggleMode }}>
       <ThemeProvider theme={currentTheme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );
