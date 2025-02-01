@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import {
   AppBar,
   Toolbar,
@@ -6,21 +6,58 @@ import {
   Typography,
   List,
   ListItem,
-  ListItemText,
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
+  useTheme,
+  Box,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-scroll";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { themeStyles } from "../assets/styles/Theme";
+import PropTypes from "prop-types";
+import Slide from "@mui/material/Slide";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
+import CodeOffIcon from "@mui/icons-material/CodeOff";
+import CodeIcon from "@mui/icons-material/Code";
+import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
+import PersonSearchTwoToneIcon from "@mui/icons-material/PersonSearchTwoTone";
+import SchoolTwoToneIcon from "@mui/icons-material/SchoolTwoTone";
+import PersonOutlineTwoToneIcon from "@mui/icons-material/PersonOutlineTwoTone";
+import WorkTwoToneIcon from "@mui/icons-material/WorkTwoTone";
+const menuData = [
+  { label: "home", icon: <HomeTwoToneIcon /> },
+  { label: "about me", icon: <PersonOutlineTwoToneIcon /> },
+  { label: "experience", icon: <SchoolTwoToneIcon /> },
+  { label: "works", icon: <WorkTwoToneIcon /> },
+  { label: "contact me", icon: <PersonSearchTwoToneIcon /> },
+];
 
-const Navbar = () => {
+function HideOnScroll(props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children ?? <div />}
+    </Slide>
+  );
+}
+
+HideOnScroll.propTypes = {
+  children: PropTypes.element,
+  window: PropTypes.func,
+};
+
+const Navbar = (props) => {
+  const theme = useTheme();
+  const styles = themeStyles(theme);
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const [showNavbar, setShowNavbar] = useState(false);
   const { mode, toggleMode } = useContext(ThemeContext);
+  const menuRef = useRef(null);
 
   // Toggle the visibility of the Navbar based on scroll
   useEffect(() => {
@@ -42,7 +79,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
       setMenuItems([]);
-      const itemTimeouts = [0, 300, 600, 900]; // Delay for each menu item
+      const itemTimeouts = [0, 300, 600, 900, 1200]; // Delay for each menu item
       itemTimeouts.forEach((timeout, index) => {
         setTimeout(() => {
           setMenuItems((prev) => [...prev, index]);
@@ -53,50 +90,80 @@ const Navbar = () => {
     }
   };
 
+  // Close menu on clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Close menu on mouse hover outside
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      if (isOpen && menuRef.current) {
+        const { left, right, top, bottom } =
+          menuRef.current.getBoundingClientRect();
+        if (
+          event.clientX < left - 20 ||
+          event.clientX > right + 20 ||
+          event.clientY < top - 200 ||
+          event.clientY > bottom + 20
+        ) {
+          setIsOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    return () => document.removeEventListener("mousemove", handleMouseMove);
+  }, [isOpen]);
+
   return (
     <>
-      {showNavbar && (
-        <AppBar position="fixed" sx={{ zIndex: 1000 }}>
-          <Toolbar>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              Your Website Name
+      <HideOnScroll {...props}>
+        <AppBar
+          sx={{
+            backgroundColor: theme.palette.background.default,
+            // backgroundColor: "transparent",
+            backgroundImage: "none",
+            boxShadow: 0,
+            height: "15vh",
+          }}
+        >
+          <Toolbar sx={{ ...styles.appbarContainer }}>
+            <Typography
+              sx={{
+                ...styles.nameTitle,
+                fontFamily: "'Major Mono Display',serif",
+              }}
+            >
+              {"<SHAN DEWAGE/>"}
             </Typography>
-            <IconButton edge="end" color="inherit" onClick={toggleNavbar}>
-              <MenuIcon />
+            <IconButton sx={{ ...styles.hamburgerIcon }} onClick={toggleNavbar}>
+              {isOpen ? <CodeOffIcon /> : <CodeIcon />}
             </IconButton>
           </Toolbar>
         </AppBar>
-      )}
-      {/* Always show the MenuIcon */}
-      {!showNavbar && (
-        <IconButton
-          color="inherit"
-          onClick={toggleNavbar}
-          sx={{ position: "fixed", top: 20, right: 20, zIndex: 2000 }}
-        >
-          <MenuIcon />
-        </IconButton>
-      )}
-
+      </HideOnScroll>
       {/* Transparent Sidebar */}
-      <div
-        style={{
-          position: "fixed",
-          top: "10%",
-          right: 0,
-          width: isOpen ? "250px" : "0",
-          height: "90vh",
-          // backgroundColor: "rgba(0, 0, 0, 0.7)",
-          overflowX: "hidden",
-          transition: "width 0.3s ease",
-          zIndex: 1200,
+      <Box
+        ref={menuRef}
+        sx={{
+          ...styles.sidebarContainer,
+          width: isOpen ? "auto" : "0",
+          height: isOpen ? "85vh" : 0,
         }}
       >
         <List sx={{ padding: 0 }}>
-          {["hero", "about", "projects", "contact"].map((item, index) => (
+          {menuData.map((item, index) => (
             <ListItem
               button
-              key={item}
+              key={item.label}
               onClick={toggleNavbar}
               sx={{
                 opacity: menuItems.includes(index) ? 1 : 0,
@@ -105,45 +172,96 @@ const Navbar = () => {
               }}
             >
               <Link
-                to={item}
+                to={item.label}
                 smooth={true}
                 duration={500}
-                style={{ textDecoration: "none", width: "100%" }}
+                style={{
+                  textDecoration: "none",
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                }}
               >
-                <ListItemText
-                  primary={item.charAt(0).toUpperCase() + item.slice(1)}
-                  sx={{ color: "#fff" }}
-                />
+                <Typography
+                  sx={{
+                    fontSize: "96px", // Your desired font size
+                    fontWeight: 800, // Optional
+                    color: theme.palette.text.primary,
+                    // fontFamily: "'Major Mono Display',serif",
+                    textTransform: "capitalize",
+                    fontFamily: "'Anton SC',serif",
+                  }}
+                >
+                  {item.label.charAt(0).toUpperCase() + item.label.slice(1)}
+                </Typography>
+                {React.cloneElement(item.icon, {
+                  sx: {
+                    fontSize: "64px", // Your desired font size
+                    fontWeight: "bold", // Optional
+                    marginLeft: "10px",
+                    color: theme.palette.text.primary,
+                  },
+                })}
               </Link>
             </ListItem>
           ))}
         </List>
 
         {/* Theme Mode Radio Buttons */}
-        <List sx={{ position: "absolute", bottom: 20, width: "100%" }}>
-          <ListItem sx={{ paddingLeft: "15px", paddingRight: "15px" }}>
-            <FormControl component="fieldset">
-              <RadioGroup
-                value={mode}
-                onChange={(event) => toggleMode(event.target.value)}
-              >
-                <FormControlLabel
-                  value="light"
-                  control={<Radio />}
-                  label="Light Mode"
-                  sx={{ color: "#fff" }}
-                />
-                <FormControlLabel
-                  value="dark"
-                  control={<Radio />}
-                  label="Dark Mode"
-                  sx={{ color: "#fff" }}
-                />
-              </RadioGroup>
-            </FormControl>
-          </ListItem>
-        </List>
-      </div>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "20px",
+            gap: "20px",
+          }}
+        >
+          <IconButton
+            onClick={() => toggleMode("light")}
+            sx={{
+              background:
+                mode === "light"
+                  ? "linear-gradient(135deg, #ffcc33, #ff9900)"
+                  : "transparent",
+              color: mode === "light" ? "#fff" : "#ffcc33",
+              boxShadow:
+                mode === "light"
+                  ? "0px 4px 10px rgba(255, 204, 51, 0.5)"
+                  : "none",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                background: "linear-gradient(135deg, #ffcc33, #ff9900)",
+                boxShadow: "0px 4px 15px rgba(255, 204, 51, 0.8)",
+              },
+            }}
+          >
+            <WbSunnyIcon sx={{ fontSize: "36px" }} />
+          </IconButton>
+          <IconButton
+            onClick={() => toggleMode("dark")}
+            sx={{
+              background:
+                mode === "dark"
+                  ? "linear-gradient(135deg, #3333ff, #6600cc)"
+                  : "transparent",
+              color: mode === "dark" ? "#fff" : "#3333ff",
+              boxShadow:
+                mode === "dark"
+                  ? "0px 4px 10px rgba(51, 51, 255, 0.5)"
+                  : "none",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                background: "linear-gradient(135deg, #3333ff, #6600cc)",
+                boxShadow: "0px 4px 15px rgba(51, 51, 255, 0.8)",
+              },
+            }}
+          >
+            <NightlightRoundIcon sx={{ fontSize: "36px" }} />
+          </IconButton>
+        </Box>
+      </Box>
     </>
   );
 };

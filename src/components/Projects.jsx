@@ -1,28 +1,34 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
+import { themeStyles } from "../assets/styles/Theme";
 
 const Projects = () => {
   const theme = useTheme();
+  const styles = themeStyles(theme);
 
   return (
     <Box
-      id="projects"
+      id="works"
       sx={{
-        height: "100vh",
-        backgroundColor: theme.palette.background.paper, // Use theme paper background
-        color: theme.palette.text.primary, // Use theme text color
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
+        ...styles.sectionContainerSecondary,
       }}
     >
-      <Typography variant="h2" sx={{ typography: theme.typography.h2 }}>
-        My Projects
-      </Typography>
-      <Typography variant="body1" sx={{ typography: theme.typography.body1 }}>
-        Details about your projects go here.
-      </Typography>
+      <Box
+        sx={{
+          ...styles.sectionTitleBox,
+        }}
+      >
+        <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography>
+        <Typography
+          variant="sectionTitle"
+          sx={{
+            ...styles.sectionTitle,
+          }}
+        >
+          Works
+        </Typography>
+        <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography>
+      </Box>
     </Box>
   );
 };

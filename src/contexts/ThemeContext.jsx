@@ -5,7 +5,7 @@ import { lightTheme, darkTheme } from "../assets/styles/BaseThemes";
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = ({ children }) => {
-  const [mode, setMode] = useState("light"); // Manage light/dark mode
+  const [mode, setMode] = useState("dark"); // Manage light/dark mode
 
   const toggleMode = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
