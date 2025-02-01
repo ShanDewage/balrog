@@ -1,7 +1,9 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-
+import { Box, Typography, useTheme } from "@mui/material";
+import { themeStyles } from "../assets/styles/Theme";
 const Footer = () => {
+  const theme = useTheme();
+  const styles = themeStyles(theme);
   return (
     <Box
       component="footer"
@@ -9,11 +11,14 @@ const Footer = () => {
         width: "100%",
         py: 2,
         textAlign: "center",
-        backgroundColor: "primary.main", // Adjust based on your theme or color preference
+        backgroundColor: theme.palette.background.paper,
         color: "white", // Adjust for readability
       }}
     >
-      <Typography variant="body2">
+      <Typography
+        variant="sectionSpan"
+        sx={{ fontSize: 10, color: theme.palette.text.primary }}
+      >
         © {new Date().getFullYear()} Your Website Name. All rights reserved.
       </Typography>
     </Box>

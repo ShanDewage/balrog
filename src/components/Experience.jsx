@@ -7,7 +7,7 @@ function useParallax(value, distance) {
   return useTransform(value, [0, 1], [-distance, distance]);
 }
 
-const Hero = () => {
+const Experience = () => {
   const theme = useTheme();
   const styles = themeStyles(theme);
   const ref = useRef(null);
@@ -19,50 +19,31 @@ const Hero = () => {
 
   return (
     <Box
-      id="home"
+      id="experience"
       ref={ref}
       sx={{
-        ...styles.heroContainer,
+        ...styles.sectionContainerPrimary,
       }}
     >
-      {" "}
       <Box
         sx={{
-          // ...styles.heroContainer,
-          py: 4,
+          ...styles.sectionTitleBox,
         }}
       >
+        <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography>
         <Typography
-          variant="h1"
+          variant="sectionTitle"
           sx={{
-            ...styles.nameTitle,
-            fontSize: "96px",
-            fontFamily: "'Nosifer', serif",
-            color: theme.palette.text.titleMain,
+            ...styles.sectionTitle,
           }}
         >
-          {"<SHAN"}
-          <br />
-          {"DEWAGE/>"}
+          Experience
         </Typography>
-        <Typography sx={{ ...styles.sectionTitleSpan1, mt: 1 }}>
-          {"</h1>"}
-        </Typography>
-        <Typography
-          variant="h5"
-          sx={{
-            ...styles.nameTitle,
-            fontSize: "16px",
-            fontFamily: "'Economica', serif",
-            py: 1,
-            textTransform: "capitalize",
-          }}
-        >
-          Front-End Developer and UI Designer.
-        </Typography>{" "}
         <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography>
-        {/* Parallax animated background image */}
-        {/* <motion.div
+      </Box>
+
+      {/* Parallax animated background image */}
+      {/* <motion.div
         style={{
           position: "absolute",
           top: 0,
@@ -75,7 +56,8 @@ const Hero = () => {
           y: y, // Apply parallax effect to background
         }}
       /> */}
-        {/* <motion.h1
+
+      {/* <motion.h1
         initial={{ opacity: 0, x: "-100%" }}
         whileInView={{ opacity: 1, x: 0 }} 
         transition={{ duration: 2, ease: "easeOut" }}
@@ -91,7 +73,8 @@ const Hero = () => {
       >
         Welcome to My Portfolio
       </motion.h1> */}
-        {/* <motion.div
+
+      {/* <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }} 
         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -106,9 +89,8 @@ const Hero = () => {
       >
         Greetings, I'm [Your Name]
       </motion.div> */}
-      </Box>
     </Box>
   );
 };
 
-export default Hero;
+export default Experience;

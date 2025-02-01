@@ -1,76 +1,73 @@
 import React from "react";
-import { Box, Typography, useTheme, Grid, IconButton } from "@mui/material";
+import { Box, Typography, useTheme, IconButton, Grid2 } from "@mui/material";
 import { Facebook, Twitter, Instagram } from "@mui/icons-material";
+import Grid from "@mui/material/Grid2";
+import { style } from "framer-motion/client";
+import { themeStyles } from "../assets/styles/Theme";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Contact = () => {
   const theme = useTheme();
+  const styles = themeStyles(theme);
 
   return (
     <Box
-      id="contact"
+      id="contact me"
       sx={{
-        height: "100vh",
-        backgroundColor: theme.palette.background.default, // Use theme background
-        color: theme.palette.text.primary, // Use theme text color
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
+        ...styles.sectionContainerPrimary,
       }}
     >
-      <Typography variant="h2" sx={{ typography: theme.typography.h2 }}>
-        Contact Me
-      </Typography>
-      <Typography variant="body1" sx={{ typography: theme.typography.body1 }}>
-        Your contact information goes here.
-      </Typography>
-      {/* Grid layout for the two-column section */}
-      <Grid container spacing={2} sx={{ marginTop: 4 }}>
-        <Grid
-          item
-          xs={5}
+      {/* This is section title start */}
+      <Box
+        sx={{
+          ...styles.sectionTitleBox,
+        }}
+      >
+        <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography>
+        <Typography
+          variant="sectionTitle"
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            ...styles.sectionTitle,
           }}
         >
-          {/* Left Column: Social Media Icons */}
-          <IconButton sx={{ mb: 2 }}>
-            <Facebook fontSize="large" />
-          </IconButton>
-          <IconButton sx={{ mb: 2 }}>
-            <Twitter fontSize="large" />
-          </IconButton>
-          <IconButton sx={{ mb: 2 }}>
-            <Instagram fontSize="large" />
+          Contact Me
+        </Typography>
+        <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography>
+      </Box>
+      {/* This is section title end */}
+
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          height: "75%",
+          py: 4,
+        }}
+      >
+        {" "}
+        <Grid
+          item
+          size={6}
+          sx={{
+            ...styles.contactGrid,
+          }}
+        >
+          <IconButton>
+            <GitHubIcon fontSize="large" />
           </IconButton>
         </Grid>
         <Grid
           item
-          xs={7}
+          size={6}
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
+            ...styles.contactGrid,
           }}
         >
-          {/* Right Column: Contact Information */}
-          <Typography variant="h6" sx={{ typography: theme.typography.h6 }}>
-            John Doe
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ typography: theme.typography.body1 }}
-          >
-            Email: johndoe@example.com
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ typography: theme.typography.body1 }}
-          >
-            Phone: +123456789
-          </Typography>
+          {" "}
+          <IconButton>
+            <LinkedInIcon fontSize="large" />
+          </IconButton>
         </Grid>
       </Grid>
     </Box>

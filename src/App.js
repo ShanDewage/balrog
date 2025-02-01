@@ -11,7 +11,14 @@ import ThemeContextProvider from "./contexts/ThemeContext";
 import Branding from "./components/Branding";
 import Footer from "./components/Footer";
 import { motion, useScroll, useSpring } from "framer-motion";
+import Experience from "./components/Experience";
+import { ThemeContext } from "./contexts/ThemeContext";
+import ListIcon from "@mui/icons-material/List";
+import { themeStyles } from "./assets/styles/Theme";
+import { useTheme } from "@mui/material";
 function App() {
+  const theme = useTheme();
+  const styles = themeStyles(theme);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -21,8 +28,7 @@ function App() {
   return (
     <ThemeContextProvider>
       <Navbar />
-      <Branding />
-
+      {/* <Branding /> */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -30,25 +36,25 @@ function App() {
       >
         <Hero />
       </motion.div>
-
       <About />
+      <Experience />
       <Projects />
       <Contact />
       <Footer />
-
       <motion.div
         className="progress-bar"
         style={{
           scaleX,
           position: "fixed",
-          top: 60,
+          bottom: 0,
           left: 0,
           right: 0,
           height: "5px",
-          backgroundColor: "black",
+          backgroundColor: "#FEBC00",
+
           transformOrigin: "0%",
-          zIndex: 10,
-          backgroundColor: "#fff" /* Adjust to your theme color */,
+          zIndex: 10000,
+
           height: "5px",
         }}
       />
