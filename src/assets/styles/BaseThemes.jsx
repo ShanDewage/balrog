@@ -6,15 +6,15 @@ const baseTypography = {
   h2: { fontSize: "2.2rem", fontWeight: 500 },
   body1: { fontSize: "1rem", lineHeight: 1.6 },
   sectionTitle: {
-    fontSize: "3rem",
-    // fontFamily: "'Nosifer', serif",
-    fontFamily: "'Anton SC',serif",
+    fontSize: "2rem",
+    fontFamily: "'Nosifer', serif",
+    // fontFamily: "'Anton SC',serif",
     // fontFamily: "'Major Mono Display',serif",
     lineHeight: 1.6,
     // fontWeight: 800,
   },
   sectionSpan: {
-    fontSize: "0.875rem",
+    fontSize: "0.75rem",
     lineHeight: 1.6,
     // fontFamily: "'Major Mono Display',serif",
     fontFamily: "'Economica', serif",
@@ -25,6 +25,21 @@ const baseTypography = {
     lineHeight: 1.6,
     // fontFamily: "'Major Mono Display',serif",
     fontFamily: "'Economica', serif",
+  },
+
+  worksTitle: {
+    fontSize: "1.5rem",
+    lineHeight: 1.6,
+    fontWeight: 400,
+    fontFamily: "'Anton SC', serif",
+    textTransform: "uppercase",
+  },
+
+  worksDesc: {
+    fontSize: "0.875rem",
+    lineHeight: 1.6,
+    fontWeight: 200,
+    fontFamily: "'Roboto', serif",
   },
 };
 
@@ -57,10 +72,10 @@ export const darkTheme = createTheme({
     primary: { main: "#AFAFAF" },
     background: {
       default: "#0F172A",
-      paper: "#1A1E23",
+      paper: "#151B2B",
       fade1: alpha("#FFFFFF", 0.1),
     },
-    text: { primary: "#E0E0E0", secondary: "#BDBDBD", titleMain: "#FEBC00" },
+    text: { primary: "#E0E0E0", secondary: "#BDBDBD", titleMain: "#FD8127" },
     // FD8127  fire color
   },
   typography: baseTypography,

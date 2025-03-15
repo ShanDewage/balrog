@@ -30,7 +30,7 @@ const Experience = () => {
           ...styles.sectionTitleBox,
         }}
       >
-        <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography>
+        {/* <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography> */}
         <Typography
           variant="sectionTitle"
           sx={{
@@ -39,7 +39,7 @@ const Experience = () => {
         >
           Experience
         </Typography>
-        <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography>
+        {/* <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography> */}
       </Box>
 
       {/* Parallax animated background image */}
