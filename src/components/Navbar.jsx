@@ -139,7 +139,9 @@ const Navbar = (props) => {
             <Typography
               sx={{
                 ...styles.nameTitle,
-                fontFamily: "'Major Mono Display',serif",
+                fontFamily: "'Anton SC',serif",
+
+                // fontFamily: "'Major Mono Display',serif",
               }}
             >
               {"<SHAN DEWAGE/>"}

@@ -24,7 +24,7 @@ const Contact = () => {
           ...styles.sectionTitleBox,
         }}
       >
-        <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography>
+        {/* <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography> */}
         <Typography
           variant="sectionTitle"
           sx={{
@@ -33,7 +33,7 @@ const Contact = () => {
         >
           Contact Me
         </Typography>
-        <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography>
+        {/* <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography> */}
       </Box>
       {/* This is section title end */}
 

@@ -53,13 +53,13 @@ export const themeStyles = (theme) => ({
 
   sectionTitleBox: {
     pt: 4,
-    borderBottom: `1px solid ${theme.palette.text.titleMain}`,
+    // borderBottom: `1px solid ${theme.palette.text.titleMain}`,
   },
 
   sectionTitle: {
     ...theme.typography.sectionTitle,
     textAlign: "center",
-    color: theme.palette.text.titleMain,
+    color: theme.palette.text.primary,
   },
 
   sectionTitleSpan1: {
@@ -130,5 +130,16 @@ export const themeStyles = (theme) => ({
     // boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
     boxShadow: 2,
     objectFit: "cover",
+  },
+
+  magicFire: {
+    position: "absolute",
+    width: "20px",
+    height: "20px",
+    background: "orange", // Adjust color to look like fire
+    borderRadius: "50%",
+    pointerEvents: "none",
+    zIndex: 9999,
+    animation: "fireEffect 1s infinite",
   },
 });

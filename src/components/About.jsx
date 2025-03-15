@@ -29,7 +29,7 @@ const About = () => {
           ...styles.sectionTitleBox,
         }}
       >
-        <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography>
+        {/* <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography> */}
         <Typography
           variant="sectionTitle"
           sx={{
@@ -38,7 +38,7 @@ const About = () => {
         >
           About Me
         </Typography>
-        <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography>
+        {/* <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography> */}
       </Box>
 
       <Grid container spacing={2} sx={styles.amGridContainer}>
