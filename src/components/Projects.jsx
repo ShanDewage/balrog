@@ -1,146 +1,254 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Box,
   Typography,
   useTheme,
   Card,
   CardMedia,
-  CardContent,
   Button,
+  IconButton,
   Chip,
 } from "@mui/material";
-import { themeStyles } from "../assets/styles/Theme";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import ProjectsData from "../projects/ProjectsData";
-import { motion } from "framer-motion";
-
+import { themeStyles } from "../assets/styles/Theme";
+import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
+function useParallax(value, distance) {
+  return useTransform(value, [0, 1], [-distance, distance]);
+}
 const Projects = () => {
   const theme = useTheme();
   const styles = themeStyles(theme);
-  const [hoveredProject, setHoveredProject] = useState(ProjectsData[0]);
+  const ref = useRef(null);
+  const contentRef = useRef(null);
+
+  const [currentProject, setCurrentProject] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentProject((prev) =>
+      prev === 0 ? ProjectsData.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentProject((prev) =>
+      prev === ProjectsData.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  // Scroll to content function
+  const scrollToContent = () => {
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <Box
       id="works"
+      ref={ref}
       sx={{
-        ...styles.sectionContainerSecondary,
-        display: "flex",
-        flexDirection: "column",
+        // ...styles.sectionContainerSecondary,
         overflow: "hidden",
+        // pb: 2,
       }}
     >
+      {/* Section Title */}
       <Box
         sx={{
           ...styles.sectionTitleBox,
         }}
       >
-        {/* <Typography sx={{ ...styles.sectionTitleSpan1 }}>{"</h1>"}</Typography> */}
-        <Typography
-          variant="sectionTitle"
+        <motion.h1
+          initial={{ opacity: 0, x: "-100%" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <Typography
+            variant="sectionTitle"
+            sx={{
+              ...styles.sectionTitle,
+            }}
+          >
+            Works
+          </Typography>
+        </motion.h1>
+
+        <Box
           sx={{
-            ...styles.sectionTitle,
+            ...styles.contentScrollContainer,
+            right: "22%",
           }}
         >
-          Works
-        </Typography>
-        {/* <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography> */}
+          <IconButton
+            onClick={scrollToContent}
+            aria-label="Scroll down to content"
+            sx={{ ...styles.btnContentScroll }}
+          >
+            <KeyboardDoubleArrowDownOutlinedIcon
+              sx={{ ...styles.iconContentScroll }}
+            />
+          </IconButton>
+        </Box>
       </Box>
 
-      {/* Grid Layout: Image (Left) | Project List (Right) */}
       <Box
+        ref={contentRef}
         sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-          gap: 3,
-          flex: 1,
-          overflow: "hidden",
-          py: 6,
+          ...styles.sectionBoxContainer,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        {/* Left Side: Display Current Project Image */}
-        <Box
+        {/* Project Image */}
+        <CardMedia
+          component="img"
+          image={ProjectsData[currentProject].image}
+          alt={ProjectsData[currentProject].title}
           sx={{
             width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-            borderRadius: 2,
+            height: "80vh",
+            objectFit: "cover",
+            borderRadius: 1,
             boxShadow: 3,
+            // mt: 4,
           }}
-        >
-          <CardMedia
-            component="img"
-            image={hoveredProject.image}
-            alt={hoveredProject.title}
-            sx={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-        </Box>
-        {/* Right Side: Project List */}
+        />
+
+        {/* Project Details */}
         <Box
           sx={{
-            overflowY: "auto",
+            position: "absolute",
+            top: "20%",
+            left: "30%",
+            transform: "translateX(-50%)",
+            textAlign: "left",
             display: "flex",
             flexDirection: "column",
-            gap: 2,
-            // py: 2,
-            pr: 1,
+            p: 4,
+
+            width: "40%",
+            zIndex: 10000,
           }}
         >
-          {ProjectsData.map((project) => (
-            <motion.div
+          <Typography variant="worksTitle" sx={{ color: "white" }}>
+            {ProjectsData[currentProject].title}
+          </Typography>
+          <Typography variant="worksDesc" sx={{ mt: 2, color: "white" }}>
+            {ProjectsData[currentProject].description}
+          </Typography>
+          {/* <Button
+          variant="contained"
+          href={ProjectsData[currentProject].link}
+          target="_blank"
+          sx={{
+            mt: 4,
+            px: 4,
+            py: 2,
+
+            color: "black",
+            fontWeight: "bold",
+            "&:hover": {
+              backgroundColor: "gray.200",
+            },
+          }}
+        >
+          See More
+        </Button> */}
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1,
+
+              justifyContent: "center",
+            }}
+          >
+            {ProjectsData[currentProject].tags.map((tag, index) => (
+              <Chip
+                key={index}
+                label={tag}
+                variant="outlined"
+                size="small"
+                sx={{ p: 1, borderColor: "white" }}
+              />
+            ))}
+          </Box>
+        </Box>
+
+        {/* Navigation Buttons */}
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: "10%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            gap: 2,
+            zIndex: 10000,
+          }}
+        >
+          <IconButton
+            sx={{
+              color: "white",
+            }}
+            onClick={handlePrev}
+          >
+            <ArrowBack />
+          </IconButton>
+          <IconButton
+            sx={{
+              color: "white",
+            }}
+            onClick={handleNext}
+          >
+            <ArrowForward />
+          </IconButton>
+        </Box>
+
+        {/* Project Thumbnails */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: "40%",
+            left: "50%",
+            // transform: "translateX(-50%)",
+            display: "flex",
+            gap: 2,
+          }}
+        >
+          {ProjectsData.map((project, index) => (
+            <Card
               key={project.id}
-              onMouseEnter={() => setHoveredProject(project)}
-              whileHover={{ scale: 1, x: 0, transition: { duration: 0.3 } }}
-              whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-              initial={{ opacity: 0, x: 20 }}
+              onClick={() => setCurrentProject(index)}
+              sx={{
+                width: 240,
+                height: 240,
+                borderRadius: 1,
+                boxShadow: 3,
+                overflow: "hidden",
+                cursor: "pointer",
+                border:
+                  currentProject === index
+                    ? `4px solid ${theme.palette.primary.main}`
+                    : "none",
+              }}
             >
-              <CardContent
+              <CardMedia
+                component="img"
+                image={project.image}
+                alt={project.title}
                 sx={{
-                  p: 2,
-                  // borderRadius: 2,
-                  // bgcolor: "background.paper",
-                  cursor: "pointer",
-                  transition: "0.3s",
-                  display: "flex",
-                  flexDirection: "column",
-
-                  alignItems: "flex-start",
-                  "&:hover": {
-                    bgcolor: theme.palette.background.fade1,
-                    boxShadow: 2,
-                    borderRadius: 1,
-                    borderRight: `4px solid ${theme.palette.text.titleMain}`,
-                  },
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
                 }}
-              >
-                <Typography variant="worksTitle">{project.title}</Typography>
-                <Typography variant="worksDesc" color="text.secondary">
-                  {project.description}
-                </Typography>
-
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
-                  {project.tags.map((tag, index) => (
-                    <Chip
-                      key={index}
-                      label={tag}
-                      variant="outlined"
-                      size="small"
-                      sx={{ p: 2 }}
-                    />
-                  ))}
-                </Box>
-                <Button href={project.link} target="_blank" sx={{ mt: 1 }}>
-                  View Project
-                </Button>
-              </CardContent>
-            </motion.div>
+              />
+            </Card>
           ))}
-        </Box>{" "}
+        </Box>
       </Box>
     </Box>
   );

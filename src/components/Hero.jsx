@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Typography, useTheme } from "@mui/material";
 import { motion, useScroll, useTransform } from "framer-motion";
 import mapImage from "../assets/images/04.jpg"; // Replace with your actual image path
 import { themeStyles } from "../assets/styles/Theme";
@@ -33,34 +33,45 @@ const Hero = () => {
         }}
       >
         <Typography
-          variant="h1"
-          sx={{
-            ...styles.nameTitle,
-            fontSize: "96px",
-            fontFamily: "'Nosifer', serif",
-            color: theme.palette.text.titleMain,
-          }}
-        >
-          {"<SHAN"}
-          <br />
-          {"DEWAGE/>"}
-        </Typography>
-        <Typography sx={{ ...styles.sectionTitleSpan1, mt: 1 }}>
-          {"</h1>"}
-        </Typography>
-        <Typography
           variant="h5"
           sx={{
             ...styles.nameTitle,
             fontSize: "16px",
             fontFamily: "'Economica', serif",
-            py: 1,
+            mb: 2,
             textTransform: "capitalize",
+            letterSpacing: "2px",
           }}
         >
-          Front-End Developer and UI Designer.
+          Front-End Developer & UI Designer.
         </Typography>{" "}
-        <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography>
+        <motion.h1
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 4, ease: "easeOut" }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              ...styles.nameTitle,
+              fontSize: "96px",
+              // fontFamily: "'Nosifer', serif",
+              color: theme.palette.text.titleMain,
+              fontFamily: "'Anton SC',serif",
+              // fontWeight: 100,
+              fontStyle: "normal",
+              letterSpacing: "24px",
+            }}
+          >
+            {"SHaN"}
+            <br />
+            {"DeWAGE"}
+          </Typography>
+        </motion.h1>
+        {/* <Typography sx={{ ...styles.sectionTitleSpan1, mt: 1 }}>
+          {"</h1>"}
+        </Typography> */}
+        {/* <Typography sx={{ ...styles.sectionTitleSpan2 }}>{"</h1>"}</Typography> */}
         {/* Parallax animated background image */}
         {/* <motion.div
         style={{
