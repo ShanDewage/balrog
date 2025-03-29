@@ -6,9 +6,9 @@ const baseTypography = {
   h2: { fontSize: "2.2rem", fontWeight: 500 },
   body1: { fontSize: "1rem", lineHeight: 1.6 },
   sectionTitle: {
-    fontSize: "2rem",
-    fontFamily: "'Nosifer', serif",
-    // fontFamily: "'Anton SC',serif",
+    fontSize: "20rem",
+    // fontFamily: "'Nosifer', serif",
+    fontFamily: "'Anton SC',serif",
     // fontFamily: "'Major Mono Display',serif",
     lineHeight: 1.6,
     // fontWeight: 800,
@@ -21,10 +21,13 @@ const baseTypography = {
   },
 
   contentPara: {
-    fontSize: "1.25rem",
+    // fontSize: "1.25rem",
+    fontSize: "1rem",
     lineHeight: 1.6,
+    fontFamily: "'Roboto', serif",
+
     // fontFamily: "'Major Mono Display',serif",
-    fontFamily: "'Economica', serif",
+    // fontFamily: "'Economica', serif",
   },
 
   worksTitle: {
@@ -39,6 +42,49 @@ const baseTypography = {
     fontSize: "0.875rem",
     lineHeight: 1.6,
     fontWeight: 200,
+    fontFamily: "'Roboto', serif",
+  },
+
+  body_xs: {
+    fontSize: "0.75rem",
+    lineHeight: 1.6,
+    fontWeight: 400,
+    fontFamily: "'Roboto', serif",
+  },
+
+  body_sm: {
+    // fontSize: "0.875rem",
+    fontSize: "1rem",
+    lineHeight: 1.6,
+    fontWeight: 300,
+    fontFamily: "'Roboto', serif",
+  },
+
+  body_md: {
+    fontSize: "1rem",
+    lineHeight: 1.6,
+    fontWeight: 400,
+    fontFamily: "'Roboto', serif",
+  },
+
+  subTitle_xs: {
+    fontSize: "0.75rem",
+    lineHeight: 1.6,
+    fontWeight: 800,
+    fontFamily: "'Roboto', serif",
+  },
+
+  subTitle_sm: {
+    fontSize: "0.875rem",
+    lineHeight: 1.6,
+    fontWeight: 500,
+    fontFamily: "'Roboto', serif",
+  },
+
+  subTitle_md: {
+    fontSize: "1rem",
+    lineHeight: 1.6,
+    fontWeight: 800,
     fontFamily: "'Roboto', serif",
   },
 };
@@ -71,9 +117,13 @@ export const darkTheme = createTheme({
     mode: "dark",
     primary: { main: "#AFAFAF" },
     background: {
-      default: "#0F172A",
-      paper: "#151B2B",
+      // default: "#0F172A",
+      // paper: "#151B2B",
+      default: "#0F0F0F",
+      paper: "#0C0C0C",
       fade1: alpha("#FFFFFF", 0.1),
+
+      //  #030f0f
     },
     text: { primary: "#E0E0E0", secondary: "#BDBDBD", titleMain: "#FD8127" },
     // FD8127  fire color

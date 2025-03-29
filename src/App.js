@@ -15,7 +15,8 @@ import Experience from "./components/Experience";
 import { ThemeContext } from "./contexts/ThemeContext";
 import ListIcon from "@mui/icons-material/List";
 import { themeStyles } from "./assets/styles/Theme";
-import { useTheme } from "@mui/material";
+import { useTheme, useScrollTrigger } from "@mui/material";
+
 function App() {
   const theme = useTheme();
   const styles = themeStyles(theme);
@@ -25,10 +26,29 @@ function App() {
     damping: 30,
     restDelta: 0.001,
   });
+
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 50,
+  });
+
   return (
     <ThemeContextProvider>
       <Navbar />
-      {/* <Branding /> */}
+      <motion.div
+        className="progress-bar"
+        style={{
+          scaleX,
+          position: "fixed",
+          top: trigger ? 0 : "10vh", // Adjust this value to match the height of your Navbar
+          left: 0,
+          right: 0,
+          height: "10px",
+          backgroundColor: "#FD8127",
+          transformOrigin: "0%",
+          zIndex: 10000,
+        }}
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -39,25 +59,7 @@ function App() {
       <About />
       <Experience />
       <Projects />
-      <Contact />
       <Footer />
-      <motion.div
-        className="progress-bar"
-        style={{
-          scaleX,
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "5px",
-          backgroundColor: "#FEBC00",
-
-          transformOrigin: "0%",
-          zIndex: 10000,
-
-          height: "5px",
-        }}
-      />
     </ThemeContextProvider>
   );
 }

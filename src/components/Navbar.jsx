@@ -29,7 +29,7 @@ const menuData = [
   { label: "about me", icon: <PersonOutlineTwoToneIcon /> },
   { label: "experience", icon: <SchoolTwoToneIcon /> },
   { label: "works", icon: <WorkTwoToneIcon /> },
-  { label: "contact me", icon: <PersonSearchTwoToneIcon /> },
+  // { label: "contact me", icon: <PersonSearchTwoToneIcon /> },
 ];
 
 function HideOnScroll(props) {
@@ -128,11 +128,11 @@ const Navbar = (props) => {
       <HideOnScroll {...props}>
         <AppBar
           sx={{
-            backgroundColor: theme.palette.background.default,
-            // backgroundColor: "transparent",
+            // backgroundColor: theme.palette.background.default,
+            backgroundColor: "transparent",
             backgroundImage: "none",
             boxShadow: 0,
-            height: "15vh",
+            height: "10vh",
           }}
         >
           <Toolbar sx={{ ...styles.appbarContainer }}>
@@ -140,19 +140,97 @@ const Navbar = (props) => {
               sx={{
                 ...styles.nameTitle,
                 fontFamily: "'Anton SC',serif",
+                fontSize: "20px",
 
                 // fontFamily: "'Major Mono Display',serif",
               }}
             >
-              {"<SHAN DEWAGE/>"}
+              {"SHAN DEWAGE"}
             </Typography>
-            <IconButton sx={{ ...styles.hamburgerIcon }} onClick={toggleNavbar}>
-              {isOpen ? <CodeOffIcon /> : <CodeIcon />}
-            </IconButton>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
+
+      {/* Theme Mode Radio Buttons */}
+
+      <IconButton
+        sx={{
+          position: "fixed",
+          top: "16px",
+          right: "120px",
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          ...styles.colorModeIcon,
+        }}
+        onClick={() => toggleMode(mode === "light" ? "dark" : "light")}
+        // sx={{
+        //   background:
+        //     mode === "light"
+        //       ? "linear-gradient(135deg, #ffcc33, #ff9900)"
+        //       : "linear-gradient(135deg, #3333ff, #6600cc)",
+        //   color: "#fff",
+        //   boxShadow:
+        //     mode === "light"
+        //       ? "0px 4px 10px rgba(255, 204, 51, 0.5)"
+        //       : "0px 4px 10px rgba(51, 51, 255, 0.5)",
+        //   transition: "all 0.3s ease",
+        //   "&:hover": {
+        //     background:
+        //       mode === "light"
+        //         ? "linear-gradient(135deg, #ffcc33, #ff9900)"
+        //         : "linear-gradient(135deg, #3333ff, #6600cc)",
+        //     boxShadow:
+        //       mode === "light"
+        //         ? "0px 4px 15px rgba(255, 204, 51, 0.8)"
+        //         : "0px 4px 15px rgba(51, 51, 255, 0.8)",
+        //   },
+        // }}
+      >
+        {mode === "light" ? (
+          <WbSunnyIcon sx={styles.hamburgerButtonIcon} />
+        ) : (
+          <NightlightRoundIcon sx={styles.hamburgerButtonIcon} />
+        )}
+      </IconButton>
+
+      <IconButton
+        sx={{
+          position: "fixed",
+          top: "16px",
+          right: "64px",
+          zIndex: 11,
+
+          // height: "10vh",
+          // width: "10vw",
+          ...styles.hamburgerIcon,
+        }}
+        onClick={toggleNavbar}
+      >
+        {isOpen ? (
+          <CodeOffIcon sx={styles.hamburgerButtonIcon} />
+        ) : (
+          <CodeIcon sx={styles.hamburgerButtonIcon} />
+        )}
+      </IconButton>
+
       {/* Transparent Sidebar */}
+
+      {isOpen && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.1)",
+            backdropFilter: "blur(10px)",
+            zIndex: 9,
+          }}
+          onClick={toggleNavbar}
+        />
+      )}
       <Box
         ref={menuRef}
         sx={{
@@ -199,7 +277,7 @@ const Navbar = (props) => {
                 </Typography>
                 {React.cloneElement(item.icon, {
                   sx: {
-                    fontSize: "64px", // Your desired font size
+                    fontSize: "96px", // Your desired font size
                     fontWeight: "bold", // Optional
                     marginLeft: "10px",
                     color: theme.palette.text.primary,
@@ -209,60 +287,6 @@ const Navbar = (props) => {
             </ListItem>
           ))}
         </List>
-
-        {/* Theme Mode Radio Buttons */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "20px",
-            gap: "20px",
-          }}
-        >
-          <IconButton
-            onClick={() => toggleMode("light")}
-            sx={{
-              background:
-                mode === "light"
-                  ? "linear-gradient(135deg, #ffcc33, #ff9900)"
-                  : "transparent",
-              color: mode === "light" ? "#fff" : "#ffcc33",
-              boxShadow:
-                mode === "light"
-                  ? "0px 4px 10px rgba(255, 204, 51, 0.5)"
-                  : "none",
-              transition: "all 0.3s ease",
-              "&:hover": {
-                background: "linear-gradient(135deg, #ffcc33, #ff9900)",
-                boxShadow: "0px 4px 15px rgba(255, 204, 51, 0.8)",
-              },
-            }}
-          >
-            <WbSunnyIcon sx={{ fontSize: "36px" }} />
-          </IconButton>
-          <IconButton
-            onClick={() => toggleMode("dark")}
-            sx={{
-              background:
-                mode === "dark"
-                  ? "linear-gradient(135deg, #3333ff, #6600cc)"
-                  : "transparent",
-              color: mode === "dark" ? "#fff" : "#3333ff",
-              boxShadow:
-                mode === "dark"
-                  ? "0px 4px 10px rgba(51, 51, 255, 0.5)"
-                  : "none",
-              transition: "all 0.3s ease",
-              "&:hover": {
-                background: "linear-gradient(135deg, #3333ff, #6600cc)",
-                boxShadow: "0px 4px 15px rgba(51, 51, 255, 0.8)",
-              },
-            }}
-          >
-            <NightlightRoundIcon sx={{ fontSize: "36px" }} />
-          </IconButton>
-        </Box>
       </Box>
     </>
   );

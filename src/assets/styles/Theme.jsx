@@ -8,9 +8,19 @@ export const themeStyles = (theme) => ({
     color: theme.palette.text.primary,
     // height: "32px",
     // width: "32px",
-    borderRadius: 1,
+    // borderRadius: 1,
     zIndex: 9999,
   },
+  colorModeIcon: {
+    // backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.secondary,
+    // height: "32px",
+    // width: "32px",
+    // borderRadius: 1,
+    zIndex: 9999,
+  },
+
+  hamburgerButtonIcon: { fontSize: "32px" },
 
   appbarContainer: {
     zIndex: 1000,
@@ -21,7 +31,7 @@ export const themeStyles = (theme) => ({
     backgroundColor: "transparent",
     // backgroundColor: theme.palette.background.default,
     mx: 6,
-    my: 2,
+    // my: 2,
     height: "100%",
   },
 
@@ -32,18 +42,27 @@ export const themeStyles = (theme) => ({
     position: "relative",
     overflow: "hidden",
     px: 8,
+    display: "flex",
+    flexDirection: "column",
     // py: 4,
-    alignContent: "flex-end",
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
-  nameTitle: { color: theme.palette.text.primary, fontSize: "32px" },
+  nameTitle: {
+    // color: theme.palette.text.primary,
+    fontSize: "32px",
+    textAlign: "center",
+  },
 
   sidebarContainer: {
     position: "fixed",
-    top: "15%",
+    top: "10%",
     display: "flex",
     justifyContent: "space-between",
     flexDirection: "column",
+    // backgroundColor: theme.palette.background.default,
     right: "4%",
     // height: "100vh",
     overflowX: "hidden",
@@ -52,7 +71,11 @@ export const themeStyles = (theme) => ({
   },
 
   sectionTitleBox: {
-    pt: 4,
+    // pt: 4,
+    textAlign: "center",
+    height: "100vh",
+    alignContent: "center",
+    backgroundColor: theme.palette.background.paper,
     // borderBottom: `1px solid ${theme.palette.text.titleMain}`,
   },
 
@@ -60,6 +83,7 @@ export const themeStyles = (theme) => ({
     ...theme.typography.sectionTitle,
     textAlign: "center",
     color: theme.palette.text.primary,
+    // position: "absolute",
   },
 
   sectionTitleSpan1: {
@@ -73,7 +97,7 @@ export const themeStyles = (theme) => ({
   },
 
   sectionContainerPrimary: {
-    height: "100vh",
+    // height: "100%",
     backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
     position: "relative",
@@ -81,8 +105,15 @@ export const themeStyles = (theme) => ({
   },
 
   sectionContainerSecondary: {
+    // height: "100vh",
+    // backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
+    position: "relative",
+    // px: 8,
+  },
+  sectionBoxContainer: {
     height: "100vh",
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
     position: "relative",
     px: 8,
@@ -103,13 +134,13 @@ export const themeStyles = (theme) => ({
   },
 
   amGridContainer: {
-    mt: 2,
+    // mt: 2,
     borderRight: `4px solid ${theme.palette.text.titleMain}`,
   },
   amGridColLeft: {
     maxHeight: "100%",
     minHeight: "70vh",
-    borderBottom: `1px solid ${theme.palette.text.titleMain}`,
+    // borderBottom: `1px solid ${theme.palette.text.titleMain}`,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -121,15 +152,16 @@ export const themeStyles = (theme) => ({
     flexDirection: "column",
     // alignItems: "center",
     justifyContent: "center",
+    gap: 2,
   },
   amProfileImg: {
-    width: "100%",
+    // width: "100%",
     height: "60vh",
-    maxWidth: "400px",
+    maxWidth: "580px",
     borderRadius: 1,
     // boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
     boxShadow: 2,
-    objectFit: "cover",
+    objectFit: "contain",
   },
 
   magicFire: {
@@ -142,4 +174,54 @@ export const themeStyles = (theme) => ({
     zIndex: 9999,
     animation: "fireEffect 1s infinite",
   },
+
+  // footer styles start
+  footerContainer: {
+    // width: "100%",
+    py: 4, // Adjust padding for smaller screens
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
+    px: { xs: 2, sm: 8 },
+  },
+
+  footerCardContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: { xs: "column", sm: "row", md: "row" },
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 4,
+    textTransform: "uppercase",
+  },
+  footerCard: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "left",
+  },
+
+  footerCardTitle: {
+    color: theme.palette.text.secondary,
+    mb: 2,
+    fontSize: theme.typography.body_xs,
+  },
+
+  footerCardText: {
+    color: theme.palette.text.primary,
+    fontSize: theme.typography.subTitle_sm,
+  },
+
+  contentScrollContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+    position: "absolute",
+    right: "3%",
+    marginTop: -14,
+  },
+
+  btnContentScroll: {},
+
+  iconContentScroll: {},
+
+  // footer styles end
 });
