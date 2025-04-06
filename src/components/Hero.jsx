@@ -1,24 +1,52 @@
-import React from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import React, { useRef } from "react";
+import { Box, Divider, Typography, useTheme } from "@mui/material";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { themeStyles } from "../assets/styles/Theme";
+function useParallax(value, distance) {
+  return useTransform(value, [0, 1], [-distance, distance]);
+}
 
 const Hero = () => {
   const theme = useTheme();
+  const styles = themeStyles(theme);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref });
+
+  // Parallax effect for background
+  const y = useParallax(scrollYProgress, 0); // Adjust distance as needed
+  const opacity = useParallax(scrollYProgress, 1); // Adjust opacity effect
 
   return (
     <Box
-      id="hero"
+      id="home"
+      ref={ref}
       sx={{
-        height: "100vh",
-        backgroundColor: theme.palette.background.default, // Use theme background
-        color: theme.palette.text.primary, // Use theme text color
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        ...styles.heroContainer,
       }}
     >
-      <Typography variant="h1" sx={{ typography: theme.typography.h2 }}>
-        Welcome to My Portfolio
-      </Typography>
+      {" "}
+      <Box
+        sx={{
+          // ...styles.heroContainer,
+          py: 4,
+        }}
+      >
+        <motion.h1
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 4, ease: "easeOut" }}
+        >
+          <Typography variant="h1" sx={styles.heroTitle}>
+            {"SHaN"}
+            <br />
+            {"DeWAGE"}
+          </Typography>
+        </motion.h1>
+        <Divider />
+        <Typography variant="h5" sx={styles.heroTagLine}>
+          Front-End Developer & UI Designer.
+        </Typography>{" "}
+      </Box>
     </Box>
   );
 };

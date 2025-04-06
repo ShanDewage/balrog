@@ -1,37 +1,44 @@
-import React, { createContext, useState, useMemo } from "react";
+import React, { createContext, useState, useMemo, useEffect } from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import {
-  lightClassic,
-  darkClassic,
-  lightFuture3D,
-  darkFuture3D,
-} from "../assets/styles/BaseThemes";
+import { lightTheme, darkTheme } from "../assets/styles/BaseThemes";
 
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = ({ children }) => {
-  const [mode, setMode] = useState("light");
-  const [subMode, setSubMode] = useState("classic");
-
-  const toggleMode = (newMode) => {
-    setMode(newMode);
-    setSubMode("classic"); // Reset to classic whenever the mode is toggled
-  };
-
-  const toggleSubMode = (newSubMode) => {
-    setSubMode(newSubMode);
-  };
-
-  const currentTheme = useMemo(() => {
-    if (mode === "light") {
-      return subMode === "classic" ? lightClassic : lightFuture3D;
-    } else {
-      return subMode === "classic" ? darkClassic : darkFuture3D;
+  // Initialize mode from localStorage or default to system preference
+  const getInitialMode = () => {
+    const savedMode = localStorage.getItem("themeMode");
+    if (savedMode) {
+      return savedMode;
     }
-  }, [mode, subMode]);
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    return prefersDarkMode ? "dark" : "light";
+  };
+
+  const [mode, setMode] = useState(getInitialMode);
+
+  const toggleMode = () => {
+    setMode((prevMode) => {
+      const newMode = prevMode === "light" ? "dark" : "light";
+      localStorage.setItem("themeMode", newMode);
+      return newMode;
+    });
+  };
+
+  // Memoize the current theme based on the mode
+  const currentTheme = useMemo(() => {
+    return mode === "light" ? lightTheme : darkTheme;
+  }, [mode]);
+
+  // Update localStorage when mode changes
+  useEffect(() => {
+    localStorage.setItem("themeMode", mode);
+  }, [mode]);
 
   return (
-    <ThemeContext.Provider value={{ mode, subMode, toggleMode, toggleSubMode }}>
+    <ThemeContext.Provider value={{ mode, toggleMode }}>
       <ThemeProvider theme={currentTheme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );

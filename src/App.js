@@ -10,15 +10,55 @@ import Projects from "./components/Projects";
 import ThemeContextProvider from "./contexts/ThemeContext";
 import Branding from "./components/Branding";
 import Footer from "./components/Footer";
+import { motion, useScroll, useSpring } from "framer-motion";
+import Experience from "./components/Experience";
+import { ThemeContext } from "./contexts/ThemeContext";
+import ListIcon from "@mui/icons-material/List";
+import { themeStyles } from "./assets/styles/Theme";
+import { useTheme, useScrollTrigger } from "@mui/material";
+
 function App() {
+  const theme = useTheme();
+  const styles = themeStyles(theme);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 50,
+  });
+
   return (
     <ThemeContextProvider>
       <Navbar />
-      <Branding />
-      <Hero />
+      <motion.div
+        className="progress-bar"
+        style={{
+          scaleX,
+          position: "fixed",
+          top: trigger ? 0 : "10vh", // Adjust this value to match the height of your Navbar
+          left: 0,
+          right: 0,
+          height: "10px",
+          backgroundColor: "#FD8127",
+          transformOrigin: "0%",
+          zIndex: 10000,
+        }}
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
+        <Hero />
+      </motion.div>
       <About />
+      <Experience />
       <Projects />
-      <Contact />
       <Footer />
     </ThemeContextProvider>
   );
