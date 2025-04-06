@@ -76,9 +76,6 @@ const About = () => {
         ref={contentRef}
         sx={{
           ...styles.sectionBoxContainer,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
         }}
       >
         <Grid container spacing={2} sx={styles.amGridContainer}>
@@ -86,81 +83,112 @@ const About = () => {
             size={{ xs: 12, sm: 12, md: 6, lg: 6, xl: 6 }}
             sx={styles.amGridColLeft}
           >
-            <Box
-              component={motion.img}
-              src={aboutme} // Adjust the path accordingly
-              alt="Profile Image"
-              sx={styles.amProfileImg}
-              initial={{
-                opacity: 0,
-                scale: 0.8,
-                //  rotate: -90
-              }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-            />
+            <motion.div
+              initial={{ opacity: 0 }}
+              // animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 4, ease: "easeOut" }}
+            >
+              <Box
+                component={motion.img}
+                src={aboutme} // Adjust the path accordingly
+                alt="Profile Image"
+                sx={styles.amProfileImg}
+                initial={{
+                  opacity: 0,
+                  scale: 0.8,
+                  //  rotate: -90
+                }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+              />
+            </motion.div>
           </Grid>
           <Grid
             size={{ xs: 12, sm: 12, md: 6, lg: 6, xl: 6 }}
             sx={styles.amGridColRight}
           >
             <Box>
-              <Typography variant="h5">Shan DewaGE</Typography>{" "}
-              <Typography variant="subTitle_md" sx={{ color: "#FD8127" }}>
-                UI/UX Designer
-              </Typography>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                // animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 2, ease: "easeOut" }}
+                whileInView={{ opacity: 1, y: 0 }}
+              >
+                <Typography variant="h3">Shan DewaGE</Typography>{" "}
+              </motion.div>{" "}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                // animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+              >
+                <Typography
+                  variant="h4"
+                  sx={{ color: theme.palette.text.titleSecondary }}
+                >
+                  UI/UX Designer
+                </Typography>{" "}
+              </motion.div>
             </Box>
-            <Box pr={10} sx={{ color: theme.palette.text.secondary }}>
-              <Typography variant="body_sm" textAlign={"justify"} paragraph>
-                Hello, I’m [Your Name], also known as [Preferred Nickname]. I’m
-                a UI/UX Designer and Front-End Developer passionate about
-                creating user-friendly and visually appealing designs. My
-                approach combines empathy for users with technical expertise to
-                deliver functional and beautiful interfaces.
-              </Typography>
-              <Typography variant="body_sm" textAlign={"justify"} paragraph>
-                With 1 year of industry experience and 1-2 years of freelancing,
-                I’ve learned that great design isn’t just about looks—it’s about
-                usability and meeting both user and stakeholder needs. I focus
-                on blending design and development to ensure aesthetics and
-                functionality work seamlessly together.
-              </Typography>
-              <Typography variant="body_sm" textAlign={"justify"} paragraph>
-                I’m 27, based in [City/Country], and hold a [Degree] in [Field].
-                My journey into design and development is driven by curiosity
-                and a desire to improve experiences, one pixel at a time.
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "left",
-                // marginTop: theme.spacing(4),
-                "& a": {
-                  color: "#333",
-                  fontSize: "2rem",
-                  // spacing: 4,
-                  margin: theme.spacing(0, 1),
-                },
-              }}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              // animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
             >
-              <a href="#">
-                <IconButton aria-label="delete">
-                  <FacebookIcon />
-                </IconButton>
-              </a>{" "}
-              <a href="#">
-                <IconButton aria-label="delete">
-                  <GitHubIcon />
-                </IconButton>
-              </a>{" "}
-              <a href="#">
-                <IconButton aria-label="delete">
-                  <LinkedInIcon />
-                </IconButton>
-              </a>
-            </Box>
+              <Box sx={styles.amGridDesc}>
+                <Typography variant="body_sm" textAlign={"justify"} paragraph>
+                  Hello, I’m [Your Name], also known as [Preferred Nickname].
+                  I’m a UI/UX Designer and Front-End Developer passionate about
+                  creating user-friendly and visually appealing designs. My
+                  approach combines empathy for users with technical expertise
+                  to deliver functional and beautiful interfaces.
+                </Typography>
+                <Typography variant="body_sm" textAlign={"justify"} paragraph>
+                  With 1 year of industry experience and 1-2 years of
+                  freelancing, I’ve learned that great design isn’t just about
+                  looks—it’s about usability and meeting both user and
+                  stakeholder needs. I focus on blending design and development
+                  to ensure aesthetics and functionality work seamlessly
+                  together.
+                </Typography>
+                <Typography variant="body_sm" textAlign={"justify"} paragraph>
+                  I’m 27, based in [City/Country], and hold a [Degree] in
+                  [Field]. My journey into design and development is driven by
+                  curiosity and a desire to improve experiences, one pixel at a
+                  time.
+                </Typography>
+              </Box>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              // animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <Box
+                sx={{
+                  ...styles.amGridIcons,
+                }}
+              >
+                <a href="#">
+                  <IconButton aria-label="delete">
+                    <FacebookIcon />
+                  </IconButton>
+                </a>{" "}
+                <a href="#">
+                  <IconButton aria-label="delete">
+                    <GitHubIcon />
+                  </IconButton>
+                </a>{" "}
+                <a href="#">
+                  <IconButton aria-label="delete">
+                    <LinkedInIcon />
+                  </IconButton>
+                </a>
+              </Box>
+            </motion.div>
           </Grid>
         </Grid>
       </Box>

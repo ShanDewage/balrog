@@ -4,23 +4,24 @@ import { px } from "framer-motion";
 // Theme.js
 export const themeStyles = (theme) => ({
   hamburgerIcon: {
-    // backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
-    // height: "32px",
-    // width: "32px",
-    // borderRadius: 1,
     zIndex: 9999,
+    position: "fixed",
+    top: "16px",
+    right: { xs: "8px", sm: "8px", md: "64px" },
   },
   colorModeIcon: {
-    // backgroundColor: theme.palette.background.default,
     color: theme.palette.text.secondary,
-    // height: "32px",
-    // width: "32px",
-    // borderRadius: 1,
+    position: "fixed",
+    top: "16px",
+    right: { xs: "50px", sm: "64px", md: "120px" },
+    display: "flex",
+    alignItems: "center",
+    // gap: "10px",
     zIndex: 9999,
   },
 
-  hamburgerButtonIcon: { fontSize: "32px" },
+  hamburgerButtonIcon: { fontSize: "24px" },
 
   appbarContainer: {
     zIndex: 1000,
@@ -30,7 +31,8 @@ export const themeStyles = (theme) => ({
     alignContent: "center",
     backgroundColor: "transparent",
     // backgroundColor: theme.palette.background.default,
-    mx: 6,
+    mx: { xs: 2, sm: 2, md: 6 },
+
     // my: 2,
     height: "100%",
   },
@@ -48,6 +50,28 @@ export const themeStyles = (theme) => ({
     alignContent: "center",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  heroTitle: {
+    textAlign: "center",
+
+    fontSize: { xs: "32px", sm: "96px", md: "96px" },
+    // fontFamily: "'Nosifer', serif",
+    color: theme.palette.text.titleMain,
+    fontFamily: "'Anton SC',serif",
+    // fontWeight: 100,
+    fontStyle: "normal",
+    letterSpacing: { xs: "12px", sm: "24px", md: "24px" },
+  },
+
+  heroTagLine: {
+    textAlign: "center",
+    // color: theme.palette.text.titleMain,
+    fontSize: "16px",
+    fontFamily: "'Economica', serif",
+    mt: 2,
+    textTransform: "capitalize",
+    letterSpacing: "2px",
   },
 
   nameTitle: {
@@ -73,7 +97,8 @@ export const themeStyles = (theme) => ({
   sectionTitleBox: {
     // pt: 4,
     textAlign: "center",
-    height: "100vh",
+    // height: "100vh",
+    height: { xs: "auto", sm: "100vh", md: "100vh" },
     alignContent: "center",
     backgroundColor: theme.palette.background.paper,
     // borderBottom: `1px solid ${theme.palette.text.titleMain}`,
@@ -112,11 +137,15 @@ export const themeStyles = (theme) => ({
     // px: 8,
   },
   sectionBoxContainer: {
-    height: "100vh",
+    // height: "100vh",
+    height: { xs: "auto", sm: "100vh", md: "100vh" },
     backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
     position: "relative",
-    px: 8,
+    px: { xs: 1, sm: 1, md: 8 },
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   sgCenter: {
@@ -135,7 +164,13 @@ export const themeStyles = (theme) => ({
 
   amGridContainer: {
     // mt: 2,
-    borderRight: `4px solid ${theme.palette.text.titleMain}`,
+    width: "100%",
+    borderRight: {
+      xs: "none",
+      sm: "none",
+      md: `4px solid ${theme.palette.text.titleMain}`,
+    },
+    // borderRight: `4px solid ${theme.palette.text.titleMain}`,
   },
   amGridColLeft: {
     maxHeight: "100%",
@@ -154,10 +189,27 @@ export const themeStyles = (theme) => ({
     justifyContent: "center",
     gap: 2,
   },
+
+  amGridDesc: {
+    color: theme.palette.text.secondary,
+    pr: { xs: 0, sm: 0, md: 10 },
+  },
+
+  amGridIcons: {
+    display: "flex",
+    justifyContent: { xs: "center", sm: "center", md: "left" },
+    "& a": {
+      color: "#333",
+      fontSize: "2rem",
+      // spacing: 4,
+      margin: theme.spacing(0, 1),
+    },
+  },
   amProfileImg: {
     // width: "100%",
     height: "60vh",
-    maxWidth: "580px",
+    maxWidth: { xs: "100%", sm: "100%", md: "580px" },
+    // maxWidth: "580px",
     borderRadius: 1,
     // boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
     boxShadow: 2,
@@ -204,11 +256,25 @@ export const themeStyles = (theme) => ({
     color: theme.palette.text.secondary,
     mb: 2,
     fontSize: theme.typography.body_xs,
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
   },
 
   footerCardText: {
     color: theme.palette.text.primary,
     fontSize: theme.typography.subTitle_sm,
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
+  },
+
+  footerSocialLinkText: {
+    color: theme.palette.text.primary,
+    fontSize: theme.typography.subTitle_sm,
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
   },
 
   contentScrollContainer: {

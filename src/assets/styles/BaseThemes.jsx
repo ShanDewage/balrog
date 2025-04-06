@@ -4,9 +4,20 @@ import { alpha, createTheme } from "@mui/material/styles";
 const baseTypography = {
   fontFamily: "'Anton SC',serif",
   h2: { fontSize: "2.2rem", fontWeight: 500 },
+  h3: {
+    fontSize: "64px",
+    fontWeight: 500,
+    lineHeight: 1.5,
+  },
+  h4: {
+    fontSize: "32px",
+    fontWeight: 500,
+    lineHeight: 1.2,
+  },
+
   body1: { fontSize: "1rem", lineHeight: 1.6 },
   sectionTitle: {
-    fontSize: "20rem",
+    fontSize: { xs: "4rem", sm: "4rem", md: "20rem" },
     // fontFamily: "'Nosifer', serif",
     fontFamily: "'Anton SC',serif",
     // fontFamily: "'Major Mono Display',serif",
@@ -31,9 +42,10 @@ const baseTypography = {
   },
 
   worksTitle: {
-    fontSize: "1.5rem",
+    // fontSize: "4rem",
+    fontSize: "64px",
     lineHeight: 1.6,
-    fontWeight: 400,
+    fontWeight: 500,
     fontFamily: "'Anton SC', serif",
     textTransform: "uppercase",
   },
@@ -41,7 +53,7 @@ const baseTypography = {
   worksDesc: {
     fontSize: "0.875rem",
     lineHeight: 1.6,
-    fontWeight: 200,
+    fontWeight: 300,
     fontFamily: "'Roboto', serif",
   },
 
@@ -105,8 +117,14 @@ export const lightTheme = createTheme({
       default: "#ffffff",
       paper: "#f5f5f5",
       fade1: alpha("#0A0A0A", 0.1),
+      label: "#FFFEFD",
     },
-    text: { primary: "#333333", secondary: "#555555", titleMain: "#1A1E23" },
+    text: {
+      primary: "#333333",
+      secondary: "#555555",
+      titleMain: "#1A1E23",
+      titleSecondary: "#FD8127",
+    },
   },
   typography: baseTypography,
 });
@@ -122,10 +140,16 @@ export const darkTheme = createTheme({
       default: "#0F0F0F",
       paper: "#0C0C0C",
       fade1: alpha("#FFFFFF", 0.1),
+      label: "#060606",
 
       //  #030f0f
     },
-    text: { primary: "#E0E0E0", secondary: "#BDBDBD", titleMain: "#FD8127" },
+    text: {
+      primary: "#E0E0E0",
+      secondary: "#BDBDBD",
+      titleMain: "#FD8127",
+      titleSecondary: "#FD8127",
+    },
     // FD8127  fire color
   },
   typography: baseTypography,
