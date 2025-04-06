@@ -1,7 +1,13 @@
 import React from "react";
 import { Box, Typography, useTheme, Link } from "@mui/material";
 import { themeStyles } from "../assets/styles/Theme";
-
+import ContactsIcon from "@mui/icons-material/Contacts";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import ContactsTwoToneIcon from "@mui/icons-material/ContactsTwoTone";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import EmailTwoToneIcon from "@mui/icons-material/EmailTwoTone";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
 const Footer = () => {
   const theme = useTheme();
   const styles = themeStyles(theme);
@@ -25,44 +31,36 @@ const Footer = () => {
       <Box sx={styles.footerCardContainer}>
         <Box sx={styles.footerCard}>
           <Typography sx={styles.footerCardTitle}>
-            Contact Me{" "}
-            <span role="img" aria-label="envelope">
-              💌
-            </span>
+            Contact Me {/* <span role="img" aria-label="envelope"> */}
+            {/* <ContactsTwoToneIcon /> */}
+            {/* </span> */}
           </Typography>
-          <Typography sx={styles.footerCardText}>blahblah@gmail.com</Typography>
+          <Typography sx={styles.footerCardText}>
+            <EmailTwoToneIcon />
+            blahblah@gmail.com
+          </Typography>
         </Box>
 
         <Box sx={styles.footerCard}>
           <Typography sx={styles.footerCardTitle}>
             Let's Connect{" "}
-            <span role="img" aria-label="handshake">
+            {/* <span role="img" aria-label="handshake">
               🤝
-            </span>
+            </span> */}
           </Typography>
           <Typography sx={styles.footerCardText}>
-            <Link
-              href="#"
-              underline="hover"
-              sx={{ color: theme.palette.text.primary }}
-            >
+            <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
+              <LinkedInIcon />
               LinkedIn
             </Link>{" "}
             |{" "}
-            <Link
-              href="#"
-              underline="hover"
-              sx={{ color: theme.palette.text.primary }}
-            >
-              Resume
+            <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
+              <GitHubIcon />
+              Github
             </Link>{" "}
             |{" "}
-            <Link
-              href="#"
-              underline="hover"
-              sx={{ color: theme.palette.text.primary }}
-            >
-              Work
+            <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
+              <FacebookIcon /> Facebook
             </Link>
           </Typography>
         </Box>

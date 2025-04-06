@@ -155,37 +155,9 @@ const Navbar = (props) => {
 
       <IconButton
         sx={{
-          position: "fixed",
-          top: "16px",
-          right: "120px",
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
           ...styles.colorModeIcon,
         }}
         onClick={() => toggleMode(mode === "light" ? "dark" : "light")}
-        // sx={{
-        //   background:
-        //     mode === "light"
-        //       ? "linear-gradient(135deg, #ffcc33, #ff9900)"
-        //       : "linear-gradient(135deg, #3333ff, #6600cc)",
-        //   color: "#fff",
-        //   boxShadow:
-        //     mode === "light"
-        //       ? "0px 4px 10px rgba(255, 204, 51, 0.5)"
-        //       : "0px 4px 10px rgba(51, 51, 255, 0.5)",
-        //   transition: "all 0.3s ease",
-        //   "&:hover": {
-        //     background:
-        //       mode === "light"
-        //         ? "linear-gradient(135deg, #ffcc33, #ff9900)"
-        //         : "linear-gradient(135deg, #3333ff, #6600cc)",
-        //     boxShadow:
-        //       mode === "light"
-        //         ? "0px 4px 15px rgba(255, 204, 51, 0.8)"
-        //         : "0px 4px 15px rgba(51, 51, 255, 0.8)",
-        //   },
-        // }}
       >
         {mode === "light" ? (
           <WbSunnyIcon sx={styles.hamburgerButtonIcon} />
@@ -194,19 +166,7 @@ const Navbar = (props) => {
         )}
       </IconButton>
 
-      <IconButton
-        sx={{
-          position: "fixed",
-          top: "16px",
-          right: "64px",
-          zIndex: 11,
-
-          // height: "10vh",
-          // width: "10vw",
-          ...styles.hamburgerIcon,
-        }}
-        onClick={toggleNavbar}
-      >
+      <IconButton sx={styles.hamburgerIcon} onClick={toggleNavbar}>
         {isOpen ? (
           <CodeOffIcon sx={styles.hamburgerButtonIcon} />
         ) : (
@@ -265,7 +225,8 @@ const Navbar = (props) => {
               >
                 <Typography
                   sx={{
-                    fontSize: "96px", // Your desired font size
+                    fontSize: { xs: "32px", sm: "64px", md: "96px" },
+
                     fontWeight: 800, // Optional
                     color: theme.palette.text.primary,
                     // fontFamily: "'Major Mono Display',serif",
@@ -277,7 +238,7 @@ const Navbar = (props) => {
                 </Typography>
                 {React.cloneElement(item.icon, {
                   sx: {
-                    fontSize: "96px", // Your desired font size
+                    fontSize: { xs: "32px", sm: "64px", md: "96px" },
                     fontWeight: "bold", // Optional
                     marginLeft: "10px",
                     color: theme.palette.text.primary,
