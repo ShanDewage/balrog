@@ -1,9 +1,7 @@
 import React from "react";
 import { Box, Typography, useTheme, Link } from "@mui/material";
 import { themeStyles } from "../assets/styles/Theme";
-import ContactsIcon from "@mui/icons-material/Contacts";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import ContactsTwoToneIcon from "@mui/icons-material/ContactsTwoTone";
+import { motion, useScroll, useTransform } from "framer-motion";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailTwoToneIcon from "@mui/icons-material/EmailTwoTone";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -20,48 +18,111 @@ const Footer = () => {
           textAlign: "left",
         }}
       >
-        <Typography
-          variant="subTitle_md"
-          sx={{ color: theme.palette.text.secondary }}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          // animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          whileInView={{ opacity: 1, x: 0 }}
         >
-          Thanks for stopping by, let's chat!
-        </Typography>
+          <Typography
+            variant="subTitle_md"
+            sx={{ color: theme.palette.text.secondary }}
+          >
+            Thanks for stopping by, let's chat!
+          </Typography>
+        </motion.div>
       </Box>
 
       <Box sx={styles.footerCardContainer}>
         <Box sx={styles.footerCard}>
-          <Typography sx={styles.footerCardTitle}>
-            Contact Me {/* <span role="img" aria-label="envelope"> */}
-            {/* <ContactsTwoToneIcon /> */}
-            {/* </span> */}
-          </Typography>
-          <Typography sx={styles.footerCardText}>
-            <EmailTwoToneIcon />
-            blahblah@gmail.com
-          </Typography>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            // animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            <Typography sx={styles.footerCardTitle}>
+              Contact Me {/* <span role="img" aria-label="envelope"> */}
+              {/* <ContactsTwoToneIcon /> */}
+              {/* </span> */}
+            </Typography>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 0, x: 50 }}
+            // animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            whileInView={{ opacity: 1, x: 0 }}
+          >
+            <Typography sx={styles.footerCardText}>
+              <EmailTwoToneIcon />
+              blahblah@gmail.com
+            </Typography>
+          </motion.div>
         </Box>
 
         <Box sx={styles.footerCard}>
-          <Typography sx={styles.footerCardTitle}>
-            Let's Connect{" "}
-            {/* <span role="img" aria-label="handshake">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            // animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            <Typography sx={styles.footerCardTitle}>
+              Let's Connect{" "}
+              {/* <span role="img" aria-label="handshake">
               🤝
             </span> */}
-          </Typography>
+            </Typography>
+          </motion.div>
           <Typography sx={styles.footerCardText}>
-            <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
-              <LinkedInIcon />
-              LinkedIn
-            </Link>{" "}
-            |{" "}
-            <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
-              <GitHubIcon />
-              Github
-            </Link>{" "}
-            |{" "}
-            <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
-              <FacebookIcon /> Facebook
-            </Link>
+            <motion.div
+              initial={{ opacity: 0, y: 0, x: 50 }}
+              // animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
+                <LinkedInIcon />
+                LinkedIn
+              </Link>{" "}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 0, x: 50 }}
+              // animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              |{" "}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 0, x: 50 }}
+              // animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
+                <GitHubIcon />
+                Github
+              </Link>{" "}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 0, x: 50 }}
+              // animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              |{" "}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 0, x: 50 }}
+              // animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2, ease: "easeOut" }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              <Link href="#" underline="hover" sx={styles.footerSocialLinkText}>
+                <FacebookIcon /> Facebook
+              </Link>
+            </motion.div>
           </Typography>
         </Box>
 
@@ -74,9 +135,17 @@ const Footer = () => {
             marginTop: "auto",
           }}
         >
-          <Typography sx={{ ...styles.footerCardTitle, mb: 0 }}>
-            ©2025 BALROG
-          </Typography>
+          {" "}
+          <motion.div
+            initial={{ opacity: 0, y: 0, x: 50 }}
+            // animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            whileInView={{ opacity: 1, x: 0 }}
+          >
+            <Typography sx={{ ...styles.footerCardTitle, mb: 0 }}>
+              ©2025 BALROG
+            </Typography>{" "}
+          </motion.div>
         </Box>
       </Box>
     </Box>

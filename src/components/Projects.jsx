@@ -215,7 +215,7 @@ const Projects = () => {
                 </Typography>
               </motion.div>
               <Box
-                sx={{
+                sx={{ 
                   display: "flex",
                   flexWrap: "wrap",
                   gap: 1,

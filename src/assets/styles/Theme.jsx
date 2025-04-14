@@ -204,6 +204,7 @@ export const themeStyles = (theme) => ({
       // spacing: 4,
       margin: theme.spacing(0, 1),
     },
+    mb: { xs: 2, sm: 2, md: 0 },
   },
   amProfileImg: {
     // width: "100%",
