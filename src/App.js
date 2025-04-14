@@ -16,8 +16,11 @@ import { ThemeContext } from "./contexts/ThemeContext";
 import ListIcon from "@mui/icons-material/List";
 import { themeStyles } from "./assets/styles/Theme";
 import { useTheme, useScrollTrigger } from "@mui/material";
+import UsePageProtection from "./hooks/UsePageProtection";
+import CursorShadow from "./components/CursorShadow";
 
 function App() {
+  // UsePageProtection();
   const theme = useTheme();
   const styles = themeStyles(theme);
   const { scrollYProgress } = useScroll();
@@ -34,17 +37,21 @@ function App() {
 
   return (
     <ThemeContextProvider>
+      <CursorShadow />
       <Navbar />
       <motion.div
         className="progress-bar"
         style={{
           scaleX,
           position: "fixed",
-          top: trigger ? 0 : "10vh", // Adjust this value to match the height of your Navbar
+          // top: trigger ? 0 : "10vh",
+          bottom: 0,
+
           left: 0,
           right: 0,
-          height: "10px",
-          backgroundColor: "#FD8127",
+          height: "4px",
+          backgroundColor: "#a0aec0",
+          // backgroundColor:  theme.palette.text.primary ,
           transformOrigin: "0%",
           zIndex: 10000,
         }}
