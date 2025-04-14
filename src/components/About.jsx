@@ -58,18 +58,25 @@ const About = () => {
         <Box
           sx={{
             ...styles.contentScrollContainer,
-            right: "9%",
+            // right: "9%",
+            right: { xs: "8%", sm: "9%", md: "8%" },
           }}
         >
-          <IconButton
-            onClick={scrollToContent}
-            aria-label="Scroll down to content"
-            sx={{ ...styles.btnContentScroll }}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
-            <KeyboardDoubleArrowDownOutlinedIcon
-              sx={{ ...styles.iconContentScroll }}
-            />
-          </IconButton>
+            <IconButton
+              onClick={scrollToContent}
+              aria-label="Scroll down to content"
+              sx={{ ...styles.btnContentScroll }}
+            >
+              <KeyboardDoubleArrowDownOutlinedIcon
+                sx={{ ...styles.iconContentScroll }}
+              />
+            </IconButton>
+          </motion.div>
         </Box>
       </Box>
       <Box
@@ -108,14 +115,27 @@ const About = () => {
             size={{ xs: 12, sm: 12, md: 6, lg: 6, xl: 6 }}
             sx={styles.amGridColRight}
           >
-            <Box>
+            <Box
+              sx={{
+                px: { xs: 2, sm: 4, md: 0 },
+              }}
+            >
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 // animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 2, ease: "easeOut" }}
                 whileInView={{ opacity: 1, y: 0 }}
               >
-                <Typography variant="h3">Shan DewaGE</Typography>{" "}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontSize: { xs: "56px", sm: "64px", md: "64px" },
+
+                    // textAlign: { xs: "center", sm: "left", md: "left" },
+                  }}
+                >
+                  Shan DewaGE
+                </Typography>{" "}
               </motion.div>{" "}
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -125,7 +145,13 @@ const About = () => {
               >
                 <Typography
                   variant="h4"
-                  sx={{ color: theme.palette.text.titleSecondary }}
+                  sx={{
+                    color: theme.palette.text.titleSecondary,
+
+                    fontSize: { xs: "24px", sm: "32px", md: "32px" },
+
+                    // textAlign: { xs: "center", sm: "left", md: "left" },
+                  }}
                 >
                   UI/UX Designer
                 </Typography>{" "}
@@ -138,14 +164,14 @@ const About = () => {
               transition={{ duration: 1, delay: 0.2 }}
             >
               <Box sx={styles.amGridDesc}>
-                <Typography variant="body_sm" textAlign={"justify"} paragraph>
+                <Typography variant="worksDesc" textAlign={"justify"} paragraph>
                   Hello, I’m [Your Name], also known as [Preferred Nickname].
                   I’m a UI/UX Designer and Front-End Developer passionate about
                   creating user-friendly and visually appealing designs. My
                   approach combines empathy for users with technical expertise
                   to deliver functional and beautiful interfaces.
                 </Typography>
-                <Typography variant="body_sm" textAlign={"justify"} paragraph>
+                <Typography variant="worksDesc" textAlign={"justify"} paragraph>
                   With 1 year of industry experience and 1-2 years of
                   freelancing, I’ve learned that great design isn’t just about
                   looks—it’s about usability and meeting both user and
@@ -153,7 +179,7 @@ const About = () => {
                   to ensure aesthetics and functionality work seamlessly
                   together.
                 </Typography>
-                <Typography variant="body_sm" textAlign={"justify"} paragraph>
+                <Typography variant="worksDesc" textAlign={"justify"} paragraph>
                   I’m 27, based in [City/Country], and hold a [Degree] in
                   [Field]. My journey into design and development is driven by
                   curiosity and a desire to improve experiences, one pixel at a

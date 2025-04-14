@@ -20,7 +20,7 @@ import UsePageProtection from "./hooks/UsePageProtection";
 import CursorShadow from "./components/CursorShadow";
 
 function App() {
-  // UsePageProtection();
+  UsePageProtection();
   const theme = useTheme();
   const styles = themeStyles(theme);
   const { scrollYProgress } = useScroll();

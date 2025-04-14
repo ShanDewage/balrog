@@ -57,18 +57,24 @@ const Projects = () => {
         <Box
           sx={{
             ...styles.contentScrollContainer,
-            right: "22%",
+            right: { xs: "18%", sm: "20%", md: "20%" },
           }}
         >
-          <IconButton
-            onClick={scrollToContent}
-            aria-label="Scroll down to content"
-            sx={{ ...styles.btnContentScroll }}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
-            <KeyboardDoubleArrowDownOutlinedIcon
-              sx={{ ...styles.iconContentScroll }}
-            />
-          </IconButton>
+            <IconButton
+              onClick={scrollToContent}
+              aria-label="Scroll down to content"
+              sx={{ ...styles.btnContentScroll }}
+            >
+              <KeyboardDoubleArrowDownOutlinedIcon
+                sx={{ ...styles.iconContentScroll }}
+              />
+            </IconButton>
+          </motion.div>
         </Box>
       </Box>
 
@@ -187,14 +193,17 @@ const Projects = () => {
               }}
             >
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: -50 }}
                 // animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 2, ease: "easeOut" }}
                 whileInView={{ opacity: 1, y: 0 }}
               >
                 <Typography
                   variant="worksTitle"
-                  sx={{ color: theme.palette.text.primary }}
+                  sx={{
+                    color: theme.palette.text.primary,
+                    fontSize: { xs: "32px", sm: "64px", md: "64px" },
+                  }}
                 >
                   {project.title}
                 </Typography>
@@ -209,7 +218,11 @@ const Projects = () => {
                   variant="worksDesc"
                   textAlign={"justify"}
                   paragraph
-                  sx={{ mt: 2, color: theme.palette.text.primary }}
+                  sx={{
+                    mt: 2,
+                    color: theme.palette.text.primary,
+                    px: { xs: 2, sm: 4, md: 0 },
+                  }}
                 >
                   {project.description}
                 </Typography>

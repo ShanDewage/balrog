@@ -55,15 +55,15 @@ export const themeStyles = (theme) => ({
   heroTitle: {
     textAlign: "center",
 
-    fontSize: { xs: "32px", sm: "96px", md: "96px" },
-    fontFamily: "'Permanent Marker', cursive",
+    fontSize: { xs: "64px", sm: "96px", md: "128px" },
+    // fontFamily: "'Permanent Marker', cursive",
     color: theme.palette.text.titleMain,
-    // fontFamily: "'Anton SC',serif",
-    // fontWeight: 100,
+    fontFamily: "'Anton SC',serif",
+    fontWeight: 800,
     fontStyle: "normal",
     letterSpacing: { xs: "12px", sm: "24px", md: "24px" },
-
-    transform: "rotate(-4deg)",
+    // textShadow: "0px 2px 4px rgba(0,0,0,0.4)",
+    // transform: "rotate(-2deg)",
   },
 
   heroTagLine: {
@@ -195,7 +195,9 @@ export const themeStyles = (theme) => ({
 
   amGridDesc: {
     color: theme.palette.text.secondary,
-    pr: { xs: 0, sm: 0, md: 10 },
+    pr: { xs: 2, sm: 4, md: 10 },
+    // px: { xs: 2, sm: 4, md: 0 },
+    pl: { xs: 2, sm: 4, md: 0 },
   },
 
   amGridIcons: {
@@ -285,8 +287,8 @@ export const themeStyles = (theme) => ({
     display: "flex",
     justifyContent: "flex-end",
     position: "absolute",
-    right: "3%",
-    marginTop: -14,
+    right: "2%",
+    marginTop: { xs: -8, sm: -14, md: -20 },
   },
 
   btnContentScroll: {},

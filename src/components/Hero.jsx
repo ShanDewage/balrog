@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Box, Divider, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Typography, useTheme, alpha } from "@mui/material";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { themeStyles } from "../assets/styles/Theme";
 function useParallax(value, distance) {
@@ -36,7 +36,21 @@ const Hero = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 4, ease: "easeOut" }}
         >
-          <Typography variant="h1" sx={styles.heroTitle}>
+          <Typography
+            variant="h1"
+            sx={{
+              ...styles.heroTitle,
+              // textShadow: `0px 2px 40px ${theme.palette.text.titleMain}`,
+              textShadow: `0px 2px 4px ${alpha(
+                theme.palette.text.titleMain,
+                0.4
+              )}`,
+
+              //         textShadow: `
+              //   0px 20px 40px ${alpha(theme.palette.text.titleMain, 0.9)},
+              // `,
+            }}
+          >
             {"SHaN"}
             <br />
             {"DeWAGE"}
