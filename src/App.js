@@ -51,7 +51,6 @@ function App() {
           right: 0,
           height: "4px",
           backgroundColor: "#a0aec0",
-          // backgroundColor:  theme.palette.text.primary ,
           transformOrigin: "0%",
           zIndex: 10000,
         }}
