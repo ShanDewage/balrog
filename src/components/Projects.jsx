@@ -215,7 +215,7 @@ const Projects = () => {
                 </Typography>
               </motion.div>
               <Box
-                sx={{ 
+                sx={{
                   display: "flex",
                   flexWrap: "wrap",
                   gap: 1,
@@ -241,12 +241,21 @@ const Projects = () => {
                       key={index}
                       label={tag}
                       variant="outlined"
-                      size="small"
+                      // size="small"
                       sx={{
-                        p: 1,
-                        borderColor: "white",
-                        color: theme.palette.text.titleSecondary,
-                        background: theme.palette.background.label,
+                        // p: 1,
+                        // borderColor: theme.palette.background.label,
+                        // color: theme.palette.text.titleSecondary,
+                        // background: theme.palette.background.label,
+
+                        backgroundColor: theme.palette.text.titleSecondary,
+                        padding: 1,
+                        color: "#fff",
+                        boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
+                        fontFamily: "'Roboto', serif",
+
+                        fontSize: "12px",
+                        fontWeight: 400,
                       }}
                     />
                   </motion.div>
