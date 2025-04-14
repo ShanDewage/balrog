@@ -42,10 +42,17 @@ const Hero = () => {
             {"DeWAGE"}
           </Typography>
         </motion.h1>
-        <Divider />
-        <Typography variant="h5" sx={styles.heroTagLine}>
-          Front-End Developer & UI Designer.
-        </Typography>{" "}
+        {/* <Divider /> */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          // animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <Typography variant="h5" sx={styles.heroTagLine}>
+            Front-End Developer & UI Designer.
+          </Typography>{" "}
+        </motion.div>
       </Box>
     </Box>
   );
