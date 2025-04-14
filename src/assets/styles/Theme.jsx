@@ -56,12 +56,14 @@ export const themeStyles = (theme) => ({
     textAlign: "center",
 
     fontSize: { xs: "32px", sm: "96px", md: "96px" },
-    // fontFamily: "'Nosifer', serif",
+    fontFamily: "'Permanent Marker', cursive",
     color: theme.palette.text.titleMain,
-    fontFamily: "'Anton SC',serif",
+    // fontFamily: "'Anton SC',serif",
     // fontWeight: 100,
     fontStyle: "normal",
     letterSpacing: { xs: "12px", sm: "24px", md: "24px" },
+
+    transform: "rotate(-4deg)",
   },
 
   heroTagLine: {
@@ -69,6 +71,7 @@ export const themeStyles = (theme) => ({
     // color: theme.palette.text.titleMain,
     fontSize: "16px",
     fontFamily: "'Economica', serif",
+
     mt: 2,
     textTransform: "capitalize",
     letterSpacing: "2px",
@@ -234,13 +237,13 @@ export const themeStyles = (theme) => ({
     py: 4, // Adjust padding for smaller screens
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.primary,
-    px: { xs: 2, sm: 8 },
+    px: { xs: 2, sm: 8, md: 8 },
   },
 
   footerCardContainer: {
     width: "100%",
     display: "flex",
-    flexDirection: { xs: "column", sm: "row", md: "row" },
+    flexDirection: { xs: "column", sm: "column", md: "row" },
     justifyContent: "center",
     alignItems: "center",
     gap: 4,
