@@ -83,17 +83,18 @@ const Experience = () => {
           backgroundColor: theme.palette.background.default,
           color: theme.palette.text.primary,
           position: "relative",
-
           px: { xs: 1, sm: 1, md: 8 },
-
-          py: 8,
+          py: { xs: 6, sm: 8 },
+          // width: "100%",
         }}
       >
         {/* This is Content */}
         <Box
           id="content"
           sx={{
-            padding: "2rem",
+            // padding: "2rem",
+            padding: { xs: 0, sm: 0, md: 4 },
+
             borderRadius: "8px",
             gap: 4,
             flexDirection: "column",
@@ -106,14 +107,12 @@ const Experience = () => {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                // gap: 1,
                 padding: "1.5rem",
+                // padding: { xs: 2, sm: 2, md: 2 },
+
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                // boxShadow: 1,
                 "&:hover": {
                   transform: "translateY(-5px)",
-                  // borderRadius: "8px",
-                  // boxShadow: "0px 1px 8px rgba(0,0,0,0.2)",
 
                   boxShadow: `
                
@@ -165,7 +164,7 @@ const Experience = () => {
                 {experience.tags.map((tag, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: 50 }}
+                    initial={{ opacity: 0, x: 0 }}
                     // animate={{ opacity: 1, y: 0 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{
