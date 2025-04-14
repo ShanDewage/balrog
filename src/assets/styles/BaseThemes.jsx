@@ -44,6 +44,7 @@ const baseTypography = {
   worksTitle: {
     // fontSize: "4rem",
     fontSize: "64px",
+
     lineHeight: 1.6,
     fontWeight: 500,
     fontFamily: "'Anton SC', serif",
