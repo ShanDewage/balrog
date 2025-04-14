@@ -1,5 +1,12 @@
 import React, { useRef } from "react";
-import { Box, Typography, useTheme, IconButton, alpha } from "@mui/material";
+import {
+  Box,
+  Typography,
+  useTheme,
+  IconButton,
+  alpha,
+  Chip,
+} from "@mui/material";
 import { motion, useScroll, useTransform } from "framer-motion";
 import mapImage from "../assets/images/04.jpg"; // Replace with your actual image path
 import { themeStyles } from "../assets/styles/Theme";
@@ -60,15 +67,21 @@ const Experience = () => {
             ...styles.contentScrollContainer,
           }}
         >
-          <IconButton
-            onClick={scrollToContent}
-            aria-label="Scroll down to content"
-            sx={{ ...styles.btnContentScroll }}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
-            <KeyboardDoubleArrowDownOutlinedIcon
-              sx={{ ...styles.iconContentScroll }}
-            />
-          </IconButton>
+            <IconButton
+              onClick={scrollToContent}
+              aria-label="Scroll down to content"
+              sx={{ ...styles.btnContentScroll }}
+            >
+              <KeyboardDoubleArrowDownOutlinedIcon
+                sx={{ ...styles.iconContentScroll }}
+              />
+            </IconButton>
+          </motion.div>
         </Box>
       </Box>
 
@@ -109,6 +122,7 @@ const Experience = () => {
                 flexDirection: "column",
                 padding: "1.5rem",
                 // padding: { xs: 2, sm: 2, md: 2 },
+                gap: 1,
 
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 "&:hover": {
@@ -128,7 +142,13 @@ const Experience = () => {
                 transition={{ duration: 2, ease: "easeOut" }}
                 whileInView={{ opacity: 1, y: 0 }}
               >
-                <Typography variant="body1" sx={{ color: "#a0aec0" }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "#a0aec0",
+                    fontSize: { xs: "16px", sm: "16px", md: "16px" },
+                  }}
+                >
                   {experience.period}
                 </Typography>
               </motion.div>
@@ -140,7 +160,10 @@ const Experience = () => {
               >
                 <Typography
                   variant="worksTitle"
-                  sx={{ color: theme.palette.text.primary }}
+                  sx={{
+                    color: theme.palette.text.primary,
+                    fontSize: { xs: "24px", sm: "24px", md: "24px" },
+                  }}
                 >
                   {experience.title}
                 </Typography>
@@ -173,18 +196,27 @@ const Experience = () => {
                       ease: "easeOut",
                     }}
                   >
-                    <Box
+                    <Chip
                       key={index}
+                      label={tag}
+                      variant="outlined"
                       sx={{
+                        // backgroundColor: theme.palette.text.titleSecondary,
+                        // padding: "0.5rem 1rem",
+                        // borderRadius: "9999px",
+                        // color: "#fff",
+                        // boxShadow: 1,
+
                         backgroundColor: theme.palette.text.titleSecondary,
-                        padding: "0.5rem 1rem",
-                        borderRadius: "9999px",
+                        padding: 1,
                         color: "#fff",
-                        boxShadow: 1,
+                        boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
+                        fontFamily: "'Roboto', serif",
+
+                        fontSize: "12px",
+                        fontWeight: 400,
                       }}
-                    >
-                      {tag}
-                    </Box>
+                    />
                   </motion.div>
                 ))}
               </Box>
