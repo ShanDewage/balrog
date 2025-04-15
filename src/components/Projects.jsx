@@ -57,7 +57,7 @@ const Projects = () => {
         <Box
           sx={{
             ...styles.contentScrollContainer,
-            right: { xs: "18%", sm: "20%", md: "20%" },
+            right: { xs: "19%", sm: "20%", md: "20%" },
           }}
         >
           <motion.div
