@@ -59,7 +59,7 @@ const About = () => {
           sx={{
             ...styles.contentScrollContainer,
             // right: "9%",
-            right: { xs: "8%", sm: "9%", md: "8%" },
+            right: { xs: "8%", sm: "9%", md: "7.5%" },
           }}
         >
           <motion.div

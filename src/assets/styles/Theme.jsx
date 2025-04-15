@@ -38,7 +38,7 @@ export const themeStyles = (theme) => ({
   },
 
   heroContainer: {
-    height: "100vh",
+    height: { xs: "100vh", sm: "100vh", md: "100vh" },
     backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
     position: "relative",
@@ -287,7 +287,7 @@ export const themeStyles = (theme) => ({
     display: "flex",
     justifyContent: "flex-end",
     position: "absolute",
-    right: "2%",
+    right: "5%",
     marginTop: { xs: -8, sm: -14, md: -20 },
   },
 
