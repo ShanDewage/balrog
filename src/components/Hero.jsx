@@ -64,7 +64,7 @@ const Hero = () => {
           transition={{ duration: 2, ease: "easeOut" }}
         >
           <Typography variant="h5" sx={styles.heroTagLine}>
-            Front-End Developer & UI Designer.
+            UI/UX Designer & Full Stack Designer.
           </Typography>{" "}
         </motion.div>
       </Box>

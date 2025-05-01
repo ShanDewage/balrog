@@ -135,7 +135,10 @@ const Projects = () => {
                   objectFit: "cover",
                   opacity: 0.1,
                   zIndex: 1,
+                  pointerEvents: "none",
                 }}
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </motion.div>
 
@@ -166,14 +169,17 @@ const Projects = () => {
                   // width: { xs: "100%", md: "50%" },
                   // height: { xs: "auto", md: "50%" },
                   p: { xs: 0, sm: 0, md: 4 },
-
+                  // maxWidth: { xs: "100%", sm: "100%", md: 420 },
                   width: { xs: "100%", sm: "100%", md: "100%" }, // Width adjustments for different screen sizes
                   height: { xs: "auto", sm: "auto", md: "50%" },
                   objectFit: "contain",
                   borderRadius: 1,
                   // boxShadow: 3,
                   zIndex: 2,
+                  pointerEvents: "none",
                 }}
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </motion.div>
 
