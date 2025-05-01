@@ -220,6 +220,7 @@ export const themeStyles = (theme) => ({
     // boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
     boxShadow: 2,
     objectFit: "contain",
+    
   },
 
   magicFire: {
