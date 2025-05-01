@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/balrog/static/css/main.e6c13ad2.css",
-    "main.js": "/balrog/static/js/main.66f9dceb.js",
+    "main.js": "/balrog/static/js/main.bcffe791.js",
     "static/js/453.8f0b1eb3.chunk.js": "/balrog/static/js/453.8f0b1eb3.chunk.js",
     "static/media/pd_1.png": "/balrog/static/media/pd_1.bd5dc27e2026c4345a4a.png",
     "static/media/me.jpg": "/balrog/static/media/me.64f9dced7ae970ebe39f.jpg",
@@ -11,11 +11,11 @@
     "static/media/04.jpg": "/balrog/static/media/04.b1c089e2ca3f44c5a0da.jpg",
     "index.html": "/balrog/index.html",
     "main.e6c13ad2.css.map": "/balrog/static/css/main.e6c13ad2.css.map",
-    "main.66f9dceb.js.map": "/balrog/static/js/main.66f9dceb.js.map",
+    "main.bcffe791.js.map": "/balrog/static/js/main.bcffe791.js.map",
     "453.8f0b1eb3.chunk.js.map": "/balrog/static/js/453.8f0b1eb3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.66f9dceb.js"
+    "static/js/main.bcffe791.js"
   ]
 }
