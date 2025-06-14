@@ -1,9 +1,9 @@
 import project_1 from "../assets/images/pd_1.png";
 import project_2 from "../assets/images/hero-1.jpg";
-import project_3 from "../assets/images/04.jpg";
-import project_4 from "../assets/images/04.jpg";
+import project_3 from "../assets/images/POS-1.png";
+import project_4 from "../assets/images/FC-1.png";
 import project_5 from "../assets/images/pd_5.jpg";
-import project_6 from "../assets/images/pd_6.jpg";
+import project_6 from "../assets/images/RES-1.png";
 
 const ProjectsData = [
   {
@@ -11,7 +11,7 @@ const ProjectsData = [
     title: "Point of Sales (POS) System",
     description:
       "I contributed to the development of a Point of Sales (POS) System as part of a collaborative team effort. My role focused on designing the complete UI/UX of the application using Figma, ensuring an intuitive and visually appealing interface. I developed the front-end using React, Material UI, Redux, and Axios, bringing the designs to life with a strong emphasis on responsiveness across all devices. I worked closely with the backend team to integrate APIs smoothly and maintain a consistent, high-quality user experience.",
-    image: project_6,
+    image: project_3,
     link: "https://github.com/your-username/ui-components",
     tags: ["React", "Material UI", "Axios", "Figma", "Redux"],
   },
@@ -29,7 +29,7 @@ const ProjectsData = [
     title: "Flash Cash Mobile App",
     description:
       "I worked as part of a team to design the UI for the Flash Cash mobile application, an online platform where users can easily apply for and manage loans. Using Figma, I crafted intuitive, user-friendly interfaces optimized for mobile devices, focusing on clear navigation, smooth user flows, and a consistent visual style. I collaborated closely with stakeholders and developers to ensure the designs aligned with business goals and technical feasibility, delivering a seamless and accessible user experience.",
-    image: project_6,
+    image: project_4,
     link: "https://github.com/your-username/ui-components",
     tags: ["Figma"],
   },
