@@ -65,6 +65,7 @@ const Experience = () => {
         <Box
           sx={{
             ...styles.contentScrollContainer,
+            right: { xs: "3%", sm: "2%", md: "1%" },
           }}
         >
           <motion.div

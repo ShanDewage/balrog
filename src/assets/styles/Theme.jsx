@@ -38,7 +38,7 @@ export const themeStyles = (theme) => ({
   },
 
   heroContainer: {
-    height: "100vh",
+    height: { xs: "100vh", sm: "100vh", md: "100vh" },
     backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
     position: "relative",
@@ -53,7 +53,7 @@ export const themeStyles = (theme) => ({
   },
 
   heroTitle: {
-    textAlign: "center",
+    textAlign: "left",
 
     fontSize: { xs: "64px", sm: "96px", md: "128px" },
     // fontFamily: "'Permanent Marker', cursive",
@@ -64,15 +64,20 @@ export const themeStyles = (theme) => ({
     letterSpacing: { xs: "12px", sm: "24px", md: "24px" },
     // textShadow: "0px 2px 4px rgba(0,0,0,0.4)",
     // transform: "rotate(-2deg)",
+    color: "transparent",
+
+    // Add text stroke
+    WebkitTextStroke: `2px ${theme.palette.text.titleMain}`, // Adjust stroke width & color as needed
+    textStroke: `2px ${theme.palette.text.titleMain}`,
   },
 
   heroTagLine: {
-    textAlign: "center",
+    textAlign: "left",
     // color: theme.palette.text.titleMain,
     fontSize: "16px",
     fontFamily: "'Economica', serif",
 
-    mt: 2,
+    mt: 0,
     textTransform: "capitalize",
     letterSpacing: "2px",
   },
@@ -287,7 +292,7 @@ export const themeStyles = (theme) => ({
     display: "flex",
     justifyContent: "flex-end",
     position: "absolute",
-    right: "2%",
+    right: "5%",
     marginTop: { xs: -8, sm: -14, md: -20 },
   },
 

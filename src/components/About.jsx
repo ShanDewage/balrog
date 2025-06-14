@@ -59,7 +59,7 @@ const About = () => {
           sx={{
             ...styles.contentScrollContainer,
             // right: "9%",
-            right: { xs: "8%", sm: "9%", md: "8%" },
+            right: { xs: "8%", sm: "9%", md: "7.5%" },
           }}
         >
           <motion.div
@@ -100,7 +100,12 @@ const About = () => {
                 component={motion.img}
                 src={aboutme} // Adjust the path accordingly
                 alt="Profile Image"
-                sx={styles.amProfileImg}
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
+                sx={{
+                  ...styles.amProfileImg,
+                  pointerEvents: "none", // Add this to prevent drag & interaction
+                }}
                 initial={{
                   opacity: 0,
                   scale: 0.8,
@@ -146,14 +151,14 @@ const About = () => {
                 <Typography
                   variant="h4"
                   sx={{
-                    color: theme.palette.text.titleSecondary,
+                    color: theme.palette.text.titleMain,
 
                     fontSize: { xs: "24px", sm: "32px", md: "32px" },
 
                     // textAlign: { xs: "center", sm: "left", md: "left" },
                   }}
                 >
-                  UI/UX Designer
+                  UI/UX Designer / Full Stack Designer
                 </Typography>{" "}
               </motion.div>
             </Box>
@@ -165,25 +170,36 @@ const About = () => {
             >
               <Box sx={styles.amGridDesc}>
                 <Typography variant="worksDesc" textAlign={"justify"} paragraph>
-                  Hello, I’m [Your Name], also known as [Preferred Nickname].
-                  I’m a UI/UX Designer and Front-End Developer passionate about
-                  creating user-friendly and visually appealing designs. My
-                  approach combines empathy for users with technical expertise
-                  to deliver functional and beautiful interfaces.
+                  I’m a designer-turned-developer who thrives at the crossroads
+                  of clean design and functional code. With a background rooted
+                  in UI/UX and a growing focus on front-end engineering, I craft
+                  digital experiences that are intuitive, scalable, and visually
+                  refined — whether it’s a mobile app interface or a fully
+                  responsive web layout.
                 </Typography>
                 <Typography variant="worksDesc" textAlign={"justify"} paragraph>
-                  With 1 year of industry experience and 1-2 years of
-                  freelancing, I’ve learned that great design isn’t just about
-                  looks—it’s about usability and meeting both user and
-                  stakeholder needs. I focus on blending design and development
-                  to ensure aesthetics and functionality work seamlessly
-                  together.
+                  Currently, I’m a Full Stack Designer at Secvision (Pvt) Ltd,
+                  where I lead end-to-end workflows — from wireframes and
+                  e-flyers to React components and pixel-perfect
+                  implementations. My day-to-day blends Figma artboards with
+                  component libraries, always keeping performance and user
+                  experience at the center.
                 </Typography>
                 <Typography variant="worksDesc" textAlign={"justify"} paragraph>
-                  I’m 27, based in [City/Country], and hold a [Degree] in
-                  [Field]. My journey into design and development is driven by
-                  curiosity and a desire to improve experiences, one pixel at a
-                  time.
+                  Previously, I worked as a freelance web developer,
+                  collaborating on everything from news platforms to custom
+                  inventory tools. That hands-on foundation gave me a deep
+                  appreciation for both visual storytelling and technical
+                  problem-solving.
+                </Typography>{" "}
+                <Typography variant="worksDesc" textAlign={"justify"} paragraph>
+                  {/* When I’m not pushing pixels or writing code, you’ll probably
+                  find me exploring design trends, tweaking UI interactions for
+                  fun, or wandering down a rabbit hole of new frameworks and
+                  creative ideas. */}
+                  When I’m not designing or coding, I’m exploring new tools,
+                  diving into design challenges, or getting inspired by the
+                  latest trends in the tech world.
                 </Typography>
               </Box>
             </motion.div>

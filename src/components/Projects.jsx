@@ -57,7 +57,7 @@ const Projects = () => {
         <Box
           sx={{
             ...styles.contentScrollContainer,
-            right: { xs: "18%", sm: "20%", md: "20%" },
+            right: { xs: "19%", sm: "20%", md: "20%" },
           }}
         >
           <motion.div
@@ -82,7 +82,6 @@ const Projects = () => {
         ref={contentRef}
         sx={{
           // ...styles.sectionBoxContainer,
-          // height: "100vh",
 
           display: "flex",
           flexDirection: "column",
@@ -94,7 +93,6 @@ const Projects = () => {
           px: { xs: 1, sm: 1, md: 8 },
 
           py: 8,
-          // overflow: "auto",
         }}
       >
         {ProjectsData.map((project, index) => (
@@ -118,7 +116,6 @@ const Projects = () => {
             {/* Background Image */}
             <motion.div
               initial={{ opacity: 0 }}
-              // animate={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 2, ease: "easeOut" }}
             >
@@ -135,23 +132,23 @@ const Projects = () => {
                   objectFit: "cover",
                   opacity: 0.1,
                   zIndex: 1,
+                  pointerEvents: "none",
                 }}
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </motion.div>
 
             {/* Project Image */}
             <motion.div
               initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-              // animate={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 2, ease: "easeOut" }}
               style={{
-                // width: "50%",
                 height: "100%",
                 zIndex: 2,
 
                 width: { xs: "100%", sm: "100%", md: "50%" },
-                // height: "auto",
 
                 display: "flex",
                 justifyContent: "center",
@@ -163,17 +160,16 @@ const Projects = () => {
                 image={project.image}
                 alt={project.title}
                 sx={{
-                  // width: { xs: "100%", md: "50%" },
-                  // height: { xs: "auto", md: "50%" },
                   p: { xs: 0, sm: 0, md: 4 },
-
                   width: { xs: "100%", sm: "100%", md: "100%" }, // Width adjustments for different screen sizes
                   height: { xs: "auto", sm: "auto", md: "50%" },
                   objectFit: "contain",
                   borderRadius: 1,
-                  // boxShadow: 3,
                   zIndex: 2,
+                  pointerEvents: "none",
                 }}
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </motion.div>
 
@@ -194,7 +190,6 @@ const Projects = () => {
             >
               <motion.div
                 initial={{ opacity: 0, y: -50 }}
-                // animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 2, ease: "easeOut" }}
                 whileInView={{ opacity: 1, y: 0 }}
               >
@@ -210,7 +205,6 @@ const Projects = () => {
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
-                // animate={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2 }}
               >
@@ -242,7 +236,6 @@ const Projects = () => {
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 50 }}
-                    // animate={{ opacity: 1, y: 0 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                       duration: 1,
@@ -254,12 +247,8 @@ const Projects = () => {
                       key={index}
                       label={tag}
                       variant="outlined"
-                      // size="small"
                       sx={{
-                        // p: 1,
-                        // borderColor: theme.palette.background.label,
-                        // color: theme.palette.text.titleSecondary,
-                        // background: theme.palette.background.label,
+                  
 
                         backgroundColor: theme.palette.text.titleSecondary,
                         padding: 1,
