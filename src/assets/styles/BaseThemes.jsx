@@ -124,7 +124,8 @@ export const lightTheme = createTheme({
       primary: "#333333",
       secondary: "#555555",
       titleMain: "#1A1E23",
-      titleSecondary: "#FD8127",
+      // titleSecondary: "#FD8127",
+      titleSecondary: "#333333",
     },
   },
   typography: baseTypography,
@@ -148,8 +149,10 @@ export const darkTheme = createTheme({
     text: {
       primary: "#E0E0E0",
       secondary: "#BDBDBD",
-      titleMain: "#FD8127",
-      titleSecondary: "#FD8127",
+      // titleMain: "#FD8127",
+      // titleSecondary: "#FD8127",
+          titleMain: "#BDBDBD",
+      titleSecondary: "#0F0F0F",
     },
     // FD8127  fire color
   },

@@ -53,7 +53,7 @@ export const themeStyles = (theme) => ({
   },
 
   heroTitle: {
-    textAlign: "center",
+    textAlign: "left",
 
     fontSize: { xs: "64px", sm: "96px", md: "128px" },
     // fontFamily: "'Permanent Marker', cursive",
@@ -64,15 +64,20 @@ export const themeStyles = (theme) => ({
     letterSpacing: { xs: "12px", sm: "24px", md: "24px" },
     // textShadow: "0px 2px 4px rgba(0,0,0,0.4)",
     // transform: "rotate(-2deg)",
+    color: "transparent",
+
+    // Add text stroke
+    WebkitTextStroke: `2px ${theme.palette.text.titleMain}`, // Adjust stroke width & color as needed
+    textStroke: `2px ${theme.palette.text.titleMain}`,
   },
 
   heroTagLine: {
-    textAlign: "center",
+    textAlign: "left",
     // color: theme.palette.text.titleMain,
     fontSize: "16px",
     fontFamily: "'Economica', serif",
 
-    mt: 2,
+    mt: 0,
     textTransform: "capitalize",
     letterSpacing: "2px",
   },
@@ -220,7 +225,6 @@ export const themeStyles = (theme) => ({
     // boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
     boxShadow: 2,
     objectFit: "contain",
-    
   },
 
   magicFire: {

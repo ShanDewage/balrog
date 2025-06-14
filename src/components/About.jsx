@@ -151,7 +151,7 @@ const About = () => {
                 <Typography
                   variant="h4"
                   sx={{
-                    color: theme.palette.text.titleSecondary,
+                    color: theme.palette.text.titleMain,
 
                     fontSize: { xs: "24px", sm: "32px", md: "32px" },
 
