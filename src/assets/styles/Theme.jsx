@@ -1,6 +1,3 @@
-import { Height, Padding } from "@mui/icons-material";
-import { px } from "framer-motion";
-
 // Theme.js
 export const themeStyles = (theme) => ({
   hamburgerIcon: {
@@ -43,19 +40,44 @@ export const themeStyles = (theme) => ({
     color: theme.palette.text.primary,
     position: "relative",
     overflow: "hidden",
-    px: 8,
+    px: 2,
+
+    // px: { xs: 2, sm: 4, md: 8, lg: 8, xl: 8 },
+
     display: "flex",
     flexDirection: "column",
     // py: 4,
+    pl: { xs: "auto", sm: 4, md: 50, lg: 50, xl: 50 },
+
     alignContent: "center",
-    alignItems: "center",
+    alignItems: {
+      xs: "center",
+      sm: "center",
+      md: "flex-start",
+      lg: "flex-start",
+      xl: "flex-start",
+    },
     justifyContent: "center",
+
+    textAlign: {
+      xs: "center",
+      sm: "center",
+      md: "left",
+      lg: "left",
+      xl: "left",
+    },
   },
 
   heroTitle: {
-    textAlign: "left",
+    textAlign: {
+      xs: "center",
+      sm: "center",
+      md: "left",
+      lg: "left",
+      xl: "left",
+    },
 
-    fontSize: { xs: "64px", sm: "96px", md: "128px" },
+    fontSize: { xs: "72px", sm: "96px", md: "128px" },
     // fontFamily: "'Permanent Marker', cursive",
     color: theme.palette.text.titleMain,
     fontFamily: "'Anton SC',serif",
@@ -182,7 +204,13 @@ export const themeStyles = (theme) => ({
   },
   amGridColLeft: {
     maxHeight: "100%",
-    minHeight: "70vh",
+    minHeight: {
+      xs: "40vh",
+      sm: "40vh",
+      md: "70vh",
+      lg: "70vh",
+      xl: "70vh",
+    },
     // borderBottom: `1px solid ${theme.palette.text.titleMain}`,
     display: "flex",
     alignItems: "center",
@@ -190,11 +218,23 @@ export const themeStyles = (theme) => ({
   },
   amGridColRight: {
     maxHeight: "100%",
-    minHeight: "70vh",
+    minHeight: {
+      xs: "40vh",
+      sm: "40vh",
+      md: "70vh",
+      lg: "70vh",
+      xl: "70vh",
+    },
     display: "flex",
     flexDirection: "column",
     // alignItems: "center",
-    justifyContent: "center",
+    justifyContent: {
+      xs: "flex-start",
+      sm: "flex-start",
+      md: "center",
+      lg: "center",
+      xl: "center",
+    },
     gap: 2,
   },
 
@@ -218,12 +258,19 @@ export const themeStyles = (theme) => ({
   },
   amProfileImg: {
     // width: "100%",
-    height: "60vh",
+    height: {
+      xs: "50vh",
+      sm: "50vh",
+      md: "60vh",
+      lg: "60vh",
+      xl: "60vh",
+    },
     maxWidth: { xs: "100%", sm: "100%", md: "580px" },
     // maxWidth: "580px",
     borderRadius: 1,
     // boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
-    boxShadow: 2,
+    boxShadow: { xs: 0, sm: 0, md: 2, lg: 2, xl: 2 },
+
     objectFit: "contain",
   },
 
