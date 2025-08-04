@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "/balrog/static/css/main.89ce99ac.css",
-    "main.js": "/balrog/static/js/main.d07e5883.js",
+    "main.js": "/balrog/static/js/main.0705731a.js",
     "static/js/453.8f0b1eb3.chunk.js": "/balrog/static/js/453.8f0b1eb3.chunk.js",
     "static/media/pd_1.png": "/balrog/static/media/pd_1.bd5dc27e2026c4345a4a.png",
+    "static/media/tumbleweed.png": "/balrog/static/media/tumbleweed.17f977ec8c4726dba8ad.png",
     "static/media/hero-1.jpg": "/balrog/static/media/hero-1.014f642b13e48ac4c7db.jpg",
     "static/media/bg.png": "/balrog/static/media/bg.9d0b88a98dec210b97eb.png",
     "static/media/pd_6.jpg": "/balrog/static/media/pd_6.dcbcd0c47a997817e494.jpg",
@@ -13,14 +14,15 @@
     "static/media/FC-1.png": "/balrog/static/media/FC-1.fa033d8bac19b2f88838.png",
     "static/media/04.jpg": "/balrog/static/media/04.b1c089e2ca3f44c5a0da.jpg",
     "static/media/1.jpg": "/balrog/static/media/1.cda42f8dea088f94ee2a.jpg",
+    "static/media/React.png": "/balrog/static/media/React.f9339a08bde3d1262249.png",
     "static/media/me.jpg": "/balrog/static/media/me.4e354ac3c166dad8ce94.jpg",
     "index.html": "/balrog/index.html",
     "main.89ce99ac.css.map": "/balrog/static/css/main.89ce99ac.css.map",
-    "main.d07e5883.js.map": "/balrog/static/js/main.d07e5883.js.map",
+    "main.0705731a.js.map": "/balrog/static/js/main.0705731a.js.map",
     "453.8f0b1eb3.chunk.js.map": "/balrog/static/js/453.8f0b1eb3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.89ce99ac.css",
-    "static/js/main.d07e5883.js"
+    "static/js/main.0705731a.js"
   ]
 }
