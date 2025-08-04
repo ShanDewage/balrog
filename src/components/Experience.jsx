@@ -184,7 +184,21 @@ const Experience = () => {
                   {experience.description}
                 </Typography>
               </motion.div>
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.5rem",
+
+                  justifyContent: {
+                    xs: "center",
+                    sm: "center",
+                    md: "flex-start",
+                    lg: "flex-start",
+                    xl: "flex-start",
+                  },
+                }}
+              >
                 {experience.tags.map((tag, index) => (
                   <motion.div
                     key={index}
