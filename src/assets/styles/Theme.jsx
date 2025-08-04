@@ -47,15 +47,15 @@ export const themeStyles = (theme) => ({
     display: "flex",
     flexDirection: "column",
     // py: 4,
-    pl: { xs: "auto", sm: 4, md: 50, lg: 50, xl: 50 },
+    // pl: { xs: "auto", sm: 4, md: 50, lg: 50, xl: 50 },
 
     alignContent: "center",
     alignItems: {
       xs: "center",
       sm: "center",
-      md: "flex-start",
-      lg: "flex-start",
-      xl: "flex-start",
+      // md: "flex-start",
+      // lg: "flex-start",
+      // xl: "flex-start",
     },
     justifyContent: "center",
 
@@ -72,9 +72,9 @@ export const themeStyles = (theme) => ({
     textAlign: {
       xs: "center",
       sm: "center",
-      md: "left",
-      lg: "left",
-      xl: "left",
+      // md: "left",
+      // lg: "left",
+      // xl: "left",
     },
 
     fontSize: { xs: "72px", sm: "96px", md: "128px" },

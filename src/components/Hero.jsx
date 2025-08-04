@@ -7,256 +7,265 @@ import {
   alpha,
   Button,
 } from "@mui/material";
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import { themeStyles } from "../assets/styles/Theme";
 import bgImage from "../assets/images/bg.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TrailImages from "../projects/Images";
+import ImageTrail from "../functions/ImageTrail";
+import TextPressure from "../functions/TextPressure";
+import tumbleweedImage from "../assets/images/tumbleweed.png";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const theme = useTheme();
   const styles = themeStyles(theme);
   const ref = useRef(null);
+  const tumbleweedRef = useRef(null);
 
-  const trailRef = useRef([]);
-  const heroRef = useRef(null);
-  const IMAGE_COUNT = TrailImages.length;
-  const IMG_SIZE = 140; // Match the width and height of your image boxes
+  const NUM_TUMBLEWEEDS = 3;
+  const tumbleweedRefs = useRef([]);
+  tumbleweedRefs.current = Array.from(
+    { length: NUM_TUMBLEWEEDS },
+    (_, i) => tumbleweedRefs.current[i] || React.createRef()
+  );
 
   useEffect(() => {
-    const container = heroRef.current;
-    const trailElements = trailRef.current;
-    let zIndexCounter = 1;
+    tumbleweedRefs.current.forEach((ref, index) => {
+      if (!ref.current) return;
+      const el = ref.current;
 
-    // Track individual hide timers per image
-    const hideTimers = new Array(IMAGE_COUNT).fill(null);
+      gsap.set(el, { opacity: 1 });
 
-    const moveHandler = (e) => {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
+      const delay = Math.random() * 5 + index * 1;
+      const duration = 10 + Math.random() * 4;
+      const xTarget = `${60 + Math.random() * 20}vw`;
+      const rotationTarget = 360 + Math.random() * 720;
 
-      const { left, width } = container.getBoundingClientRect();
-      const relX = mouseX - left;
+      // Create a main timeline for the drift
+      const tl = gsap.timeline({ delay, repeat: -1 });
 
-      let idx = Math.floor((relX / width) * IMAGE_COUNT);
-      idx = Math.max(0, Math.min(idx, IMAGE_COUNT - 1));
-
-      const imageEl = trailElements[idx];
-      zIndexCounter += 1;
-      imageEl.style.zIndex = zIndexCounter;
-
-      // Clear old hide timer for this image
-      clearTimeout(hideTimers[idx]);
-
-      // Show current image at cursor position
-      gsap.to(imageEl, {
-        left: mouseX,
-        top: mouseY,
-        xPercent: -50,
-        yPercent: -50,
-        opacity: 1,
-        scale: 1,
-        duration: 0.3,
-        ease: "power3.out",
-      });
-
-      // Set timer to fade out this image slowly
-      hideTimers[idx] = setTimeout(() => {
-        gsap.to(imageEl, {
-          opacity: 0,
-          scale: 0.8,
-          duration: 1.5, // Longer for smooth fade
-          ease: "power3.out",
-        });
-      }, 800); // Delay before fading out
-    };
-
-    const leaveHandler = () => {
-      // Clear all timers and fade out all
-      hideTimers.forEach((timer, i) => clearTimeout(timer));
-      trailElements.forEach((imgEl) => {
-        gsap.to(imgEl, {
-          opacity: 0,
-          scale: 0.8,
-          duration: 1.5,
-          ease: "power3.out",
-        });
-      });
-    };
-
-    container.addEventListener("mousemove", moveHandler);
-    container.addEventListener("mouseleave", leaveHandler);
-
-    return () => {
-      container.removeEventListener("mousemove", moveHandler);
-      container.removeEventListener("mouseleave", leaveHandler);
-      hideTimers.forEach((timer) => clearTimeout(timer));
-    };
-  }, []);
-  return (
-    <Box
-      id="home"
-      ref={heroRef}
-      // ref={ref}
-      sx={{
-        ...styles.heroContainer,
-      }}
-    >
-      <Box
-        sx={{
-          position: {
-            xs: "absolute",
-            sm: "absolute",
-            md: "fixed",
-            lg: "fixed",
-            xl: "fixed",
+      tl.to(
+        el,
+        {
+          x: xTarget,
+          rotation: rotationTarget,
+          duration,
+          ease: "sine.inOut",
+        },
+        0
+      )
+        .to(
+          el,
+          {
+            // bump gently like wind (sinusoidal y motion)
+            y: "-=20", // move up
+            duration: duration / 4,
+            repeat: Math.floor(duration / (duration / 4)),
+            yoyo: true,
+            ease: "sine.inOut",
           },
-          top: 0,
-          bottom: 100,
-          right: { xs: 100, sm: 0, md: -1000, lg: -1000, xl: -1000 },
+          0
+        )
+        .to(el, {
+          opacity: 0,
+          duration: 2,
+          ease: "sine.out",
+          onComplete: () => {
+            gsap.set(el, {
+              x: 0,
+              y: 0,
+              rotation: 0,
+              opacity: 1,
+            });
+          },
+        });
+    });
+  }, []);
 
-          height: "100%",
-          width: { xs: "300px", md: "110%" },
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: "cover",
-          // backgroundPosition: "right center",
-          backgroundRepeat: "no-repeat",
-          zIndex: 1,
-          pointerEvents: "none",
-        }}
-      />
-      {TrailImages.map((img, index) => (
-        <Box
+  return (
+    <>
+      {tumbleweedRefs.current.map((ref, index) => (
+        <img
           key={index}
-          ref={(el) => (trailRef.current[index] = el)}
-          sx={{
-            width: IMG_SIZE,
-            height: IMG_SIZE,
-            backgroundImage: `url(${img})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            borderRadius: "12px",
-            opacity: 0,
-            scale: 0.8,
-            pointerEvents: "none",
-            // zIndex: 10,
+          ref={ref}
+          src={tumbleweedImage}
+          alt={`Tumbleweed ${index}`}
+          style={{
             position: "absolute",
-            top: 0,
+            bottom: 0,
             left: 0,
-            transform: "translate(-50%, -50%)",
-            transition: "opacity 0.3s ease, transform 0.3s ease",
+            width: "80px",
+            zIndex: 3,
+            pointerEvents: "none",
+            opacity: 0,
           }}
         />
       ))}
 
-      <Box
-        sx={{
-          // ...styles.heroContainer,
-          // py: 4,
-          pt: { xs: 0, sm: 0, md: 4, lg: 4, xl: 4 },
+      <div
+        style={{
+          height: "100vh",
+          position: "absolute",
+          width: "100%",
         }}
       >
-        <motion.h1
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 4, ease: "easeOut" }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              ...styles.heroTitle,
-              textShadow: `0px 2px 4px ${alpha(
-                theme.palette.text.titleMain,
-                0.4
-              )}`,
-            }}
-          >
-            {"SHaN"}
-            <br />
-            {"DeWAGE"}{" "}
-          </Typography>
-        </motion.h1>
-      </Box>
-      <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.8 }}
+        <ImageTrail key={1} items={TrailImages} variant={3} />
+      </div>
+
+      <Box
+        id="home"
+        ref={ref}
+        sx={{
+          ...styles.heroContainer,
+        }}
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: {
-              xs: "center",
-              sm: "center",
-              md: "flex-start",
-              lg: "flex-start",
-              xl: "flex-start",
+            position: {
+              xs: "absolute",
+              sm: "absolute",
+              md: "fixed",
+              lg: "fixed",
+              xl: "fixed",
             },
-            textAlign: {
-              xs: "center",
-              sm: "center",
-              md: "left",
-              lg: "left",
-              xl: "left",
-            },
+            // top: 0,
+            bottom: -80,
+            right: { xs: -100, sm: 0, md: -300, lg: -300, xl: -400 },
+
+            // height: "75%",
+            height: { xs: "50%", sm: "50%", md: "75%" },
+
+            width: { xs: "400px", sm: "50%", md: "50%" },
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",
+            // backgroundPosition: "right center",
+            backgroundRepeat: "no-repeat",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+
+        <Box
+          sx={{
+            // ...styles.heroContainer,
+            // py: 4,
+            pt: { xs: 0, sm: 0, md: 4, lg: 4, xl: 4 },
           }}
         >
-          <Typography
-            variant="worksDesc"
-            paragraph
+          <motion.h1
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 4, ease: "easeOut" }}
+          >
+            <Typography
+              variant="h1"
+              sx={{
+                ...styles.heroTitle,
+                textShadow: `0px 2px 4px ${alpha(
+                  theme.palette.text.titleMain,
+                  0.4
+                )}`,
+              }}
+            >
+              {/* {"SHaN"}
+              <br />
+              {"DeWAGE"}{" "} */}
+              <TextPressure
+                text={"SHaN DeWAGE"}
+                flex={true}
+                alpha={false}
+                stroke={false}
+                width={true}
+                weight={true}
+                italic={true}
+                textColor="#000"
+                strokeColor="#ff0000"
+                minFontSize={36}
+              />
+            </Typography>
+          </motion.h1>
+        </Box>
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.8 }}
+        >
+          <Box
             sx={{
-              color: theme.palette.text.secondary,
-              maxWidth: "600px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: {
+                xs: "center",
+                sm: "center",
+                md: "flex-start",
+                lg: "flex-start",
+                xl: "flex-start",
+              },
               textAlign: {
                 xs: "center",
                 sm: "center",
-                md: "justify",
-                lg: "justify",
-                xl: "justify",
+                md: "left",
+                lg: "left",
+                xl: "left",
               },
             }}
           >
-            I’m a full-stack designer crafting seamless UIs and clean code. This
-            space is where design meets development — with a sprinkle of
-            obsession for detail.
-            <br />
-            <br />
-            Lately, I’ve been exploring new tools, refining ideas, and building
-            things that (hopefully) don't break.
-          </Typography>
+            <Typography
+              variant="worksDesc"
+              paragraph
+              sx={{
+                color: theme.palette.text.secondary,
+                maxWidth: "600px",
+                textAlign: {
+                  xs: "center",
+                  sm: "center",
+                  md: "justify",
+                  lg: "justify",
+                  xl: "justify",
+                },
+              }}
+            >
+              I’m a full-stack designer crafting seamless UIs and clean code.
+              This space is where design meets development — with a sprinkle of
+              obsession for detail.
+              <br />
+              <br />
+              Lately, I’ve been exploring new tools, refining ideas, and
+              building things that (hopefully) don't break.
+            </Typography>
 
-          <Button
-            // id="about me"
-            // ref={ref}
-            onClick={() => {
-              const aboutSection = document.getElementById("about me");
-              if (aboutSection) {
-                aboutSection.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-            sx={{
-              fontWeight: 400,
-              px: 2,
-              border: `1px solid ${theme.palette.primary.main}`,
-              borderRadius: "999px",
-              textTransform: "capitalize",
-              color: theme.palette.primary.main,
-              transition: "0.3s",
-              "&:hover": {
-                backgroundColor: theme.palette.text.primary,
-                color: theme.palette.background.default,
-              },
-            }}
-          >
-            Read More »
-          </Button>
-        </Box>
-      </motion.div>
-    </Box>
+            <Button
+              // id="about me"
+              // ref={ref}
+              onClick={() => {
+                const aboutSection = document.getElementById("about me");
+                if (aboutSection) {
+                  aboutSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              sx={{
+                fontWeight: 400,
+                px: 2,
+                border: `1px solid ${theme.palette.primary.main}`,
+                borderRadius: "999px",
+                textTransform: "capitalize",
+                color: theme.palette.primary.main,
+                transition: "0.3s",
+                "&:hover": {
+                  backgroundColor: theme.palette.text.primary,
+                  color: theme.palette.background.default,
+                },
+              }}
+            >
+              Read More »
+            </Button>
+          </Box>
+        </motion.div>
+      </Box>
+    </>
   );
 };
 

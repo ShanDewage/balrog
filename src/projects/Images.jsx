@@ -23,3 +23,5 @@ const TrailImages = [
 ];
 
 export default TrailImages;
+
+// vikings theme color code  - #00b1bd

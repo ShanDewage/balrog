@@ -8,6 +8,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import ProfileCard from "../functions/ProfileCard";
 function useParallax(value, distance) {
   return useTransform(value, [0, 1], [-distance, distance]);
 }
@@ -114,6 +115,18 @@ const About = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
               />
+              {/* <ProfileCard
+                name={false}
+                title={false}
+                handle={false}
+                status={false}
+                contactText={false}
+                avatarUrl={aboutme}
+                miniAvatarUrl={aboutme}
+                showUserInfo={false}
+                enableTilt={true}
+                onContactClick={() => console.log("Contact clicked")}
+              /> */}
             </motion.div>
           </Grid>
           <Grid
