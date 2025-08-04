@@ -18,6 +18,8 @@ import { themeStyles } from "./assets/styles/Theme";
 import { useTheme, useScrollTrigger } from "@mui/material";
 import UsePageProtection from "./hooks/UsePageProtection";
 import CursorShadow from "./components/CursorShadow";
+import TargetCursor from "./functions/TargetCursor";
+import ProLanguages from "./components/ProLanguages";
 
 function App() {
   // UsePageProtection();
@@ -38,6 +40,7 @@ function App() {
   return (
     <ThemeContextProvider>
       <CursorShadow />
+      <TargetCursor spinDuration={2} hideDefaultCursor={true} />
       <Navbar />
       <motion.div
         className="progress-bar"
@@ -65,6 +68,7 @@ function App() {
       <About />
       <Experience />
       <Projects />
+      <ProLanguages />
       <Footer />
     </ThemeContextProvider>
   );
