@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/balrog/static/css/main.5c8f6e67.css",
-    "main.js": "/balrog/static/js/main.3c83e02b.js",
+    "main.js": "/balrog/static/js/main.84631ebe.js",
     "static/js/453.8f0b1eb3.chunk.js": "/balrog/static/js/453.8f0b1eb3.chunk.js",
     "static/media/pd_1.png": "/balrog/static/media/pd_1.bd5dc27e2026c4345a4a.png",
     "static/media/tumbleweed.png": "/balrog/static/media/tumbleweed.17f977ec8c4726dba8ad.png",
@@ -18,11 +18,11 @@
     "static/media/me.jpg": "/balrog/static/media/me.4e354ac3c166dad8ce94.jpg",
     "index.html": "/balrog/index.html",
     "main.5c8f6e67.css.map": "/balrog/static/css/main.5c8f6e67.css.map",
-    "main.3c83e02b.js.map": "/balrog/static/js/main.3c83e02b.js.map",
+    "main.84631ebe.js.map": "/balrog/static/js/main.84631ebe.js.map",
     "453.8f0b1eb3.chunk.js.map": "/balrog/static/js/453.8f0b1eb3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5c8f6e67.css",
-    "static/js/main.3c83e02b.js"
+    "static/js/main.84631ebe.js"
   ]
 }
