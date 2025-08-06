@@ -40,7 +40,8 @@ export const themeStyles = (theme) => ({
     color: theme.palette.text.primary,
     position: "relative",
     overflow: "hidden",
-    px: 2,
+    // px: 2,
+    px: { xs: 2, sm: 2, md: 6 },
 
     // px: { xs: 2, sm: 4, md: 8, lg: 8, xl: 8 },
 
@@ -53,11 +54,17 @@ export const themeStyles = (theme) => ({
     alignItems: {
       xs: "center",
       sm: "center",
-      // md: "flex-start",
+      md: "flex-start",
       // lg: "flex-start",
       // xl: "flex-start",
     },
-    justifyContent: "center",
+    justifyContent: {
+      xs: "center",
+      sm: "center",
+      md: "flex-start",
+      // lg: "flex-start",
+      // xl: "flex-start",
+    },
 
     textAlign: {
       xs: "center",
@@ -72,12 +79,12 @@ export const themeStyles = (theme) => ({
     textAlign: {
       xs: "center",
       sm: "center",
-      // md: "left",
+      md: "left",
       // lg: "left",
       // xl: "left",
     },
 
-    fontSize: { xs: "72px", sm: "96px", md: "128px" },
+    fontSize: { xs: "56px", sm: "96px", md: "128px" },
     // fontFamily: "'Permanent Marker', cursive",
     color: theme.palette.text.titleMain,
     fontFamily: "'Anton SC',serif",
@@ -86,11 +93,11 @@ export const themeStyles = (theme) => ({
     letterSpacing: { xs: "12px", sm: "24px", md: "24px" },
     // textShadow: "0px 2px 4px rgba(0,0,0,0.4)",
     // transform: "rotate(-2deg)",
-    color: "transparent",
+    // color: "transparent",
 
     // Add text stroke
-    WebkitTextStroke: `2px ${theme.palette.text.titleMain}`, // Adjust stroke width & color as needed
-    textStroke: `2px ${theme.palette.text.titleMain}`,
+    // WebkitTextStroke: `2px ${theme.palette.text.titleMain}`,
+    // textStroke: `2px ${theme.palette.text.titleMain}`,
   },
 
   heroTagLine: {
@@ -131,6 +138,9 @@ export const themeStyles = (theme) => ({
     height: { xs: "auto", sm: "100vh", md: "100vh" },
     alignContent: "center",
     backgroundColor: theme.palette.background.paper,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     // borderBottom: `1px solid ${theme.palette.text.titleMain}`,
   },
 
@@ -336,7 +346,8 @@ export const themeStyles = (theme) => ({
   },
 
   contentScrollContainer: {
-    display: "flex",
+    display: { xs: "none", sm: "none", md: "flex" },
+
     justifyContent: "flex-end",
     position: "absolute",
     right: "5%",
@@ -345,7 +356,10 @@ export const themeStyles = (theme) => ({
 
   btnContentScroll: {},
 
-  iconContentScroll: {},
+  iconContentScroll: {
+    width: 56,
+    height: 56,
+  },
 
   // footer styles end
 });

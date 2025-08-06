@@ -24,12 +24,14 @@ import PersonSearchTwoToneIcon from "@mui/icons-material/PersonSearchTwoTone";
 import SchoolTwoToneIcon from "@mui/icons-material/SchoolTwoTone";
 import PersonOutlineTwoToneIcon from "@mui/icons-material/PersonOutlineTwoTone";
 import WorkTwoToneIcon from "@mui/icons-material/WorkTwoTone";
+import TextType from "../functions/TextType";
+import LayersTwoToneIcon from "@mui/icons-material/LayersTwoTone";
 const menuData = [
   { label: "home", icon: <HomeTwoToneIcon /> },
   { label: "about me", icon: <PersonOutlineTwoToneIcon /> },
   { label: "experience", icon: <SchoolTwoToneIcon /> },
   { label: "works", icon: <WorkTwoToneIcon /> },
-  // { label: "contact me", icon: <PersonSearchTwoToneIcon /> },
+  { label: "tech stack", icon: <LayersTwoToneIcon /> },
 ];
 
 function HideOnScroll(props) {
@@ -141,11 +143,18 @@ const Navbar = (props) => {
                 ...styles.nameTitle,
                 fontFamily: "'Anton SC',serif",
                 fontSize: "20px",
-
-                // fontFamily: "'Major Mono Display',serif",
               }}
             >
-              {"SHAN DEWAGE"}
+              {/* {"SHAN DEWAGE"} */}
+              <TextType
+                text={["SHAN", "DEWAGE"]}
+                typingSpeed={175}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="</>"
+                textColors
+                loop={true}
+              />
             </Typography>
           </Toolbar>
         </AppBar>

@@ -65,13 +65,19 @@ const Experience = () => {
         <Box
           sx={{
             ...styles.contentScrollContainer,
-            right: { xs: "3%", sm: "2%", md: "1%" },
+            right: { xs: "3%", sm: "2%", md: "1.5%" },
           }}
         >
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{
+              y: [0, 200, 0],
+              opacity: [1, 0.7, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           >
             <IconButton
               onClick={scrollToContent}
