@@ -20,6 +20,7 @@ import UsePageProtection from "./hooks/UsePageProtection";
 import CursorShadow from "./components/CursorShadow";
 import TargetCursor from "./functions/TargetCursor";
 import ProLanguages from "./components/ProLanguages";
+import { useMediaQuery } from "@mui/material";
 
 function App() {
   // UsePageProtection();
@@ -31,16 +32,12 @@ function App() {
     damping: 30,
     restDelta: 0.001,
   });
-
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 50,
-  });
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
     <ThemeContextProvider>
       <CursorShadow />
-      <TargetCursor spinDuration={2} hideDefaultCursor={true} />
+      {!isMobile && <TargetCursor spinDuration={2} hideDefaultCursor={true} />}
       <Navbar />
       <motion.div
         className="progress-bar"

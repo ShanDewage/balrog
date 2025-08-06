@@ -16,6 +16,7 @@ import TrailImages from "../projects/Images";
 import ImageTrail from "../functions/ImageTrail";
 import TextPressure from "../functions/TextPressure";
 import tumbleweedImage from "../assets/images/tumbleweed.png";
+import DecryptedText from "../functions/DecryptedText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,8 @@ const Hero = () => {
   const styles = themeStyles(theme);
   const ref = useRef(null);
   const tumbleweedRef = useRef(null);
+  const gunRef = useRef(null);
+  const bulletRef = useRef(null);
 
   const NUM_TUMBLEWEEDS = 3;
   const tumbleweedRefs = useRef([]);
@@ -85,9 +88,39 @@ const Hero = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const gun = gunRef.current;
+    const bullet = bulletRef.current;
+
+    if (!gun || !bullet) return;
+
+    const tl = gsap.timeline({ repeat: -1, delay: 2, repeatDelay: 4 });
+
+    // Gun recoil effect
+    tl.to(gun, {
+      rotate: -10,
+      duration: 0.1,
+      ease: "power1.inOut",
+    })
+      .to(gun, {
+        rotate: 0,
+        duration: 0.1,
+        ease: "power1.out",
+      })
+
+      // Bullet appears and shoots right
+      .set(bullet, { opacity: 1, x: 0 })
+      .to(bullet, {
+        x: "100vw",
+        duration: 5,
+        ease: "power2.inOut",
+      })
+      .set(bullet, { opacity: 0, x: 0 }); // reset bullet
+  }, []);
+
   return (
     <>
-      {tumbleweedRefs.current.map((ref, index) => (
+      {/* {tumbleweedRefs.current.map((ref, index) => (
         <img
           key={index}
           ref={ref}
@@ -103,13 +136,14 @@ const Hero = () => {
             opacity: 0,
           }}
         />
-      ))}
+      ))} */}
 
       <div
         style={{
           height: "100vh",
           position: "absolute",
           width: "100%",
+          // zIndex: -1,
         }}
       >
         <ImageTrail key={1} items={TrailImages} variant={3} />
@@ -122,18 +156,19 @@ const Hero = () => {
           ...styles.heroContainer,
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             position: {
               xs: "absolute",
               sm: "absolute",
-              md: "fixed",
-              lg: "fixed",
-              xl: "fixed",
+              md: "absolute",
+              // lg: "fixed",
+              // xl: "fixed",
             },
-            // top: 0,
-            bottom: -80,
+            top: "40%",
+            // bottom: "50vh",
             right: { xs: -100, sm: 0, md: -300, lg: -300, xl: -400 },
+            display: { xs: "none", sm: "none", md: "flex" },
 
             // height: "75%",
             height: { xs: "50%", sm: "50%", md: "75%" },
@@ -146,13 +181,16 @@ const Hero = () => {
             zIndex: 1,
             pointerEvents: "none",
           }}
-        />
+        /> */}
 
         <Box
           sx={{
             // ...styles.heroContainer,
             // py: 4,
-            pt: { xs: 0, sm: 0, md: 4, lg: 4, xl: 4 },
+            position: "absolute",
+
+            // bottom: 0,
+            pt: { xs: 0, sm: 0, md: 16, lg: 16, xl: 16 },
           }}
         >
           <motion.h1
@@ -164,31 +202,91 @@ const Hero = () => {
               variant="h1"
               sx={{
                 ...styles.heroTitle,
+                // 212224
                 textShadow: `0px 2px 4px ${alpha(
                   theme.palette.text.titleMain,
                   0.4
                 )}`,
+                transform: "scaleY(1.5)",
               }}
             >
-              {/* {"SHaN"}
+              {/* {"SHaN DeWAGE"} */}
+              {/* <br /> */}
+              {/* {"DeWAGE"}{" "} */}
+              {"HI! I'M SHaNNNNN"}
+              <Box
+                component="span"
+                sx={{
+                  display: { xs: "none", sm: "none", md: "inline-block" },
+                  fontSize: 13,
+                  fontWeight: 300,
+                  fontFamily: "'Roboto', serif",
+                  letterSpacing: 2,
+                  width: "200px",
+                }}
+              >
+                <DecryptedText
+                  text="I’m a full-stack designer crafting seamless UIs and clean code.
+                This space is where design meets development — with a sprinkle
+                of obsession for detail."
+                  animateOn="view"
+                  revealDirection="center"
+                  speed={200}
+                  maxIterations={10}
+                />
+                {/* I’m a full-stack designer crafting seamless UIs and clean code.
+                This space is where design meets development — with a sprinkle
+                of obsession for detail. */}
+              </Box>{" "}
               <br />
-              {"DeWAGE"}{" "} */}
-              <TextPressure
-                text={"SHaN DeWAGE"}
-                flex={true}
-                alpha={false}
-                stroke={false}
-                width={true}
-                weight={true}
-                italic={true}
-                textColor="#000"
-                strokeColor="#ff0000"
-                minFontSize={36}
-              />
+              <Box
+                component="span"
+                sx={{
+                  display: { xs: "none", sm: "none", md: "inline-block" },
+                  fontSize: 13,
+                  fontWeight: 300,
+                  fontFamily: "'Roboto', serif",
+                  letterSpacing: 2,
+                  width: "150px",
+                }}
+              >
+                <DecryptedText
+                  text="Lately, I’ve been exploring new tools, refining ideas, and
+                building things that (hopefully) don't break."
+                  animateOn="view"
+                  revealDirection="center"
+                  speed={200}
+                  maxIterations={10}
+                />
+                {/* Lately, I’ve been exploring new tools, refining ideas, and
+                building things that (hopefully) don't break. */}
+              </Box>{" "}
+              {"UI/UX EnGINEER"}
             </Typography>
           </motion.h1>
         </Box>
-        <motion.div
+
+        <Box
+          sx={{
+            ...styles.footerCard,
+
+            alignItems: "flex-start",
+            justifyContent: "flex-end",
+            marginTop: "auto",
+          }}
+        >
+          {" "}
+          <motion.div
+            initial={{ opacity: 0, x: 0 }}
+            transition={{ duration: 2, delay: 0.8, ease: "easeOut" }}
+            whileInView={{ opacity: 1, x: 0 }}
+          >
+            <Typography sx={{ ...styles.footerCardTitle, mb: 2 }}>
+              ©2025 BALROG
+            </Typography>{" "}
+          </motion.div>
+        </Box>
+        {/* <motion.div
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.8 }}
@@ -238,8 +336,6 @@ const Hero = () => {
             </Typography>
 
             <Button
-              // id="about me"
-              // ref={ref}
               onClick={() => {
                 const aboutSection = document.getElementById("about me");
                 if (aboutSection) {
@@ -263,7 +359,7 @@ const Hero = () => {
               Read More »
             </Button>
           </Box>
-        </motion.div>
+        </motion.div> */}
       </Box>
     </>
   );
